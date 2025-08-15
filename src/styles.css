@@ -1,4 +1,26 @@
+
 body {
-    margin: 0;
-    background: rgb(37,37,38);
+  background-image: url('assets/background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:60rem;
+  font-family: system-ui;
+  margin: 0;
+}
+
+.wrapper {
+  max-width: 50rem;
+  margin-top: -1rem;
+  padding-inline: 2rem;
+}
+
+
+section{
+  padding-block: 1rem;
+  background: rgb(31, 31, 31);
+}
+
+.horizontal{
+  background-image: 
+  linear-gradient();
 }
