@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    min-width: 50px;
+    min-width: 0px;
     overflow: hidden;
     white-space: nowrap;
     font-family: sans-serif;
@@ -28,4 +28,16 @@ body {
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
     transition: background-color 0.1s ease-in-out;
+}
+
+.nav__link:hover{
+    background-color: rgb(255, 255, 255);
+}
+
+.nav__link--active{
+color: cadetblue;
+}
+
+.nav__icon{
+font-size: 18px;
 }
