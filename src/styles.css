@@ -3,7 +3,7 @@ body {
   background-image: url('assets/background.png');
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-size:100rem;
+  background-size:120rem;
   background-position-y: -10rem;
   font-family: system-ui;
   margin: 500;
@@ -12,9 +12,9 @@ body {
 
 
 .wrapper {
-  max-width: 200rem;
+  max-width: 100rem;
   margin-top: -1rem;
-  padding-inline: 2rem;
+  padding-inline: 10rem;
 }
 
 
