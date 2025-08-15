@@ -3,13 +3,13 @@ body {
   background-image: url('assets/background.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size:60rem;
+  background-size:70rem;
   font-family: system-ui;
   margin: 0;
 }
 
 .wrapper {
-  max-width: 50rem;
+  max-width: 200rem;
   margin-top: -1rem;
   padding-inline: 2rem;
 }
