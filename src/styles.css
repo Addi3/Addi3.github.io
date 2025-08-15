@@ -89,6 +89,8 @@ h2 {
 .betabar a{
   color: rgb(63, 165, 255);
   padding: 15px;
+  display: block;
+  text-align: center;
 }
 
 .betabar a:hover{
