@@ -1,7 +1,7 @@
 
 body {
   background-image: url('assets/background.png');
-  background-repeat: no-repeat;
+  background-repeat: inherit;
   background-attachment: scroll;
   background-size:120rem;
   background-position-y: -10rem;
