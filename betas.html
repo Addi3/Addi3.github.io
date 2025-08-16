@@ -43,17 +43,30 @@
       cursor: pointer;
     }
   </style>
-  <script>
-    function checkPassword() {
-      const password = document.getElementById("pass").value;
-      if (password === "secretstuff") { // change this to your password
-        document.getElementById("protected").style.display = "block";
-        document.getElementById("login").style.display = "none";
-      } else {
-        alert("Wrong password!");
-      }
+<script>
+
+  async function hashMessage(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function checkPassword() {
+    const password = document.getElementById("pass").value;
+    const hash = await hashMessage(password);
+
+ 
+    const correctHash = "71f3d458e1f0a47c4e8b92b49b5a8f7b693fa321c2fc8a2764bcbf4d07e27cc7";
+
+    if (hash === correctHash) {
+      document.getElementById("protected").style.display = "block";
+      document.getElementById("login").style.display = "none";
+    } else {
+      alert("Wrong password!");
     }
-  </script>
+  }
+</script>
 </head>
 <body>
   <!-- Login overlay -->
