@@ -18,6 +18,13 @@ body {
   padding-inline: 10rem;
 }
 
+.wrapper2 {
+  max-width: 100rem;
+  margin-top: -1rem;
+  padding-inline: 10rem;
+  text-align: left;
+}
+
 
 section{
   padding-block: 1rem;
@@ -95,4 +102,8 @@ h2 {
 
 .betabar a:hover{
   background-color: rgb(182, 181, 181)
+}
+
+.betabar {
+  margin-bottom: -10px; /* Adjust the number for more/less space */
 }

@@ -1,103 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>addies-site</title>
-  <link rel="stylesheet" href="./src/styles.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      color: #ddd;
-      /* keep your background from styles.css */
-    }
-
-    #protected {
-      display: none; /* hide site until password is correct */
-    }
-
-    #login {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0,0,0,0.6); /* semi-transparent overlay so your bg image is still visible */
-      color: white;
-      z-index: 9999;
-    }
-
-    #login input {
-      margin: 8px;
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    #login button {
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>addies-site</title>
+<link rel="stylesheet" href="./src/styles.css">
+<style>
+body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#login{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.6);color:#fff;z-index:9999}#login input,#login button{margin:8px;padding:8px;font-size:16px}#login button{cursor:pointer}.download-btn{font-size:20px;padding:15px 30px;background-color:#4caf50;color:#fff;border:none;border-radius:8px;cursor:pointer}.download-btn:hover{background-color:#45a049}#file-upload-container{position:fixed;bottom:20px;width:100%;text-align:center}
+</style>
 <script>
-  function checkPassword() {
-    const password = document.getElementById("pass").value;
+(function(){
+  // SHA-512 hash of "secretstuff"
+  const _0x1a2b=["181c1b0c2534946c647ae1a3b557d0db6e49ad8728972f1719a033c7a088c6d2f74fb251cb0706da352d12d48e1f8f981a098149df3ea1b4a9c1ae1dc13ed36c"];
 
-    // password stored reversed
-    const hidden = "ffutsterces"; 
+  // Hash a string with SHA-512
+  async function _0x3f4c(_0x5a6d){
+    const _0x7c8f=new TextEncoder();
+    const _0x9d2b=await crypto.subtle.digest("SHA-512",_0x7c8f.encode(_0x5a6d));
+    return Array.from(new Uint8Array(_0x9d2b)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  }
 
-    if (password.split("").reverse().join("") === hidden) {
-      document.getElementById("protected").style.display = "block";
-      document.getElementById("login").style.display = "none";
-    } else {
+  // Password check
+  window.checkPassword=async function(){
+    const _0xa1b2=document.getElementById("pass").value.trim();
+    const _0xc3d4=await _0x3f4c(_0xa1b2);
+    if(_0xc3d4===_0x1a2b[0]){
+      document.getElementById("protected").style.display="block";
+      document.getElementById("login").style.display="none";
+      window.userPassword=_0xa1b2;
+    }else{
       alert("Wrong password!");
     }
+  };
+
+  // AES key derivation
+  async function _0x5f6a(p,salt){
+    const enc=new TextEncoder();
+    const km=await crypto.subtle.importKey("raw",enc.encode(p),"PBKDF2",false,["deriveKey"]);
+    return crypto.subtle.deriveKey({name:"PBKDF2",salt:enc.encode(salt),iterations:100000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
   }
+
+  // Encrypt file
+  window.encryptFile=async function(f){
+    const ab=await f.arrayBuffer();
+    const iv=crypto.getRandomValues(new Uint8Array(12));
+    const key=await _0x5f6a(window.userPassword,"mySalt123");
+    const enc=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,ab);
+    const blob=new Blob([iv,new Uint8Array(enc)],{type:"application/octet-stream"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=url;a.download=f.name+".enc";a.click();URL.revokeObjectURL(url);
+  }
+
+  // Decrypt file
+  window.decryptFile=async function(url,filename){
+    const resp=await fetch(url);const ab=await resp.arrayBuffer();const iv=ab.slice(0,12);const data=ab.slice(12);
+    const key=await _0x5f6a(window.userPassword,"mySalt123");
+    try{
+      const dec=await crypto.subtle.decrypt({name:"AES-GCM",iv},key,data);
+      const blob=new Blob([dec],{type:"application/java-archive"});
+      const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename.replace(".enc","");a.click();
+    }catch(e){alert("Failed to decrypt. Wrong password or corrupted file.");console.error(e);}
+  }
+
+  // Handle file upload
+  window.processFile=function(e){const f=e.target.files[0];if(f)window.encryptFile(f)}
+})();
 </script>
 </head>
 <body>
-  <!-- Login overlay -->
-  <div id="login">
-    <h2>Enter Password to Access</h2>
-    <input type="password" id="pass" placeholder="Password">
-    <button onclick="checkPassword()">Enter</button>
-  </div>
+<div id="login">
+<h2>Enter Password to Access</h2>
+<input type="password" id="pass" placeholder="Password">
+<button onclick="checkPassword()">Enter</button>
+</div>
 
-  <!-- Protected content -->
-  <div id="protected">
-    <center>
-      <h2 style="color:rgb(70, 71, 72)">Betas</h2>
-
-      <section class="horizontal">
-        <div class="wrapper">
-          <h2 style="color:aliceblue" class="section-title">Mod Beta Downloads!</h2>
-          <p style="color:aliceblue">
-            Here you can find the latest beta versions of my mods. These are not final releases and may contain bugs or unfinished features. Use them at your own risk!
-          </p>
-          <p style="color:aliceblue">
-            If you encounter any issues, please report them on the GitHub Issues page of that mod.
-          </p>
-        </div>
-      </section>
-
-      <nav class="betabar">
-        <ul>
-          <li><a href="./src/content/ait-extras-1.1.0.194-1.20.1-beta.jar" download>ait-extras-1.1.0.194-1.20.1-beta.jar</a></li>
-        </ul>
-      </nav>
-
-      <nav class="navbar">
-        <ul>
-          <li><img src="./src/assets/home.png"><a href="index.html">Home</a></li>
-          <li><img src="./src/assets/portfolio.png"><a href="portfolio.html">Portfolio</a></li>
-          <li><img src="./src/assets/betas.png"><a href="betaspublic.html">Public Betas</a></li>
-        </ul>
-      </nav>
-    </center>
-  </div>
+<div id="protected" style="text-align:center;">
+<h2 style="color:rgb(70, 71, 72)">Betas</h2>
+<section class="horizontal">
+<div class="wrapper">
+<h2 style="color:aliceblue" class="section-title">Mod Beta Downloads!</h2>
+<p style="color:aliceblue">Here you can find the latest beta versions of my mods. Use at your own risk!</p>
+</div>
+</section>
+<nav class="betabar" style="margin-bottom: 40px;">
+<ul>
+<li>
+<button class="download-btn" onclick="decryptFile('./src/content/ait-extras-1.1.0.194-1.20.1-beta.jar.enc','ait-extras-1.1.0.194-1.20.1-beta.jar')">Download ait-extras Mod</button>
+</li>
+</ul>
+</nav>
+<nav class="navbar">
+<ul>
+<li><img src="./src/assets/home.png" alt="Home"><a href="index.html">Home</a></li>
+<li><img src="./src/assets/portfolio.png" alt="Portfolio"><a href="portfolio.html">Portfolio</a></li>
+<li><img src="./src/assets/betas.png" alt="Public Betas"><a href="betas.html">Public Betas</a></li>
+</ul>
+</nav>
+<div id="file-upload-container">
+<input type="file" id="file-upload" onchange="processFile(event)">
+</div>
+</div>
 </body>
 </html>
