@@ -96,9 +96,9 @@ I currently make mods for 2 Minecraft dev teams; AmbleLabs, and Joyeux.
 
 <nav class="navbar">
 <ul>
-  <li><img src="./src/assets/home.png"><a href="index.html">Home</a></li>
-  <li><img src="./src/assets/portfolio.png"><a href="portfolio.html">Portfolio</a></li>
-  <li><img src="./src/assets/betas.png"><a href="betas.html">Betas</a></li>
+  <li><img src="./src/assets/home.png"><a href="index">Home</a></li>
+  <li><img src="./src/assets/portfolio.png"><a href="portfolio">Portfolio</a></li>
+  <li><img src="./src/assets/betas.png"><a href="betas">Betas</a></li>
 </ul>
 </nav>
 

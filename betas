@@ -91,9 +91,9 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
 </nav>
 <nav class="navbar">
 <ul>
-<li><img src="./src/assets/home.png" alt="Home"><a href="index.html">Home</a></li>
-<li><img src="./src/assets/portfolio.png" alt="Portfolio"><a href="portfolio.html">Portfolio</a></li>
-<li><img src="./src/assets/betas.png" alt="Public Betas"><a href="betas.html">Betas</a></li>
+<li><img src="./src/assets/home.png" alt="Home"><a href="index">Home</a></li>
+<li><img src="./src/assets/portfolio.png" alt="Portfolio"><a href="portfolio">Portfolio</a></li>
+<li><img src="./src/assets/betas.png" alt="Public Betas"><a href="betas">Betas</a></li>
 </ul>
 </nav>
 <div id="file-upload-container">
