@@ -48,31 +48,33 @@ I currently make mods for 2 Minecraft dev teams; AmbleLabs, and Joyeux.
 
 <div id="latest-video"></div>
 
+<div id="latest-video">Loading...</div>
+
+<div id="latest-video">Loading...</div>
+
 <script>
-  const API_KEY    = "AIzaSyAwYPPCLytze36jztzePx_7z0SqaxYK0yo"; // get from https://console.cloud.google.com/apis
-  const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";        // your channel ID (starts with UC...)
+  const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";
 
   async function loadLatestVideo() {
     try {
-      const url = new URL("https://www.googleapis.com/youtube/v3/search");
-      url.search = new URLSearchParams({
-        key: API_KEY,
-        channelId: CHANNEL_ID,
-        part: "snippet",
-        order: "date",
-        maxResults: "1",
-        type: "video"
-      });
-
-      const res = await fetch(url);
+      const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+      
+      const res = await fetch(proxyUrl);
       const data = await res.json();
 
-      if (!data.items || !data.items.length) {
+      // Parse the returned contents (XML as string)
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(data.contents, "application/xml");
+
+      const entries = xml.getElementsByTagName("entry");
+      if (!entries.length) {
         document.getElementById("latest-video").innerText = "No videos found.";
         return;
       }
 
-      const videoId = data.items[0].id.videoId;
+      const latest = entries[0];
+      const videoId = latest.getElementsByTagName("yt:videoId")[0].textContent;
 
       document.getElementById("latest-video").innerHTML = `
         <iframe
@@ -83,11 +85,11 @@ I currently make mods for 2 Minecraft dev teams; AmbleLabs, and Joyeux.
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
       `;
     } catch (err) {
       console.error("Error loading video:", err);
+      document.getElementById("latest-video").innerText = "Failed to load video.";
     }
   }
 
