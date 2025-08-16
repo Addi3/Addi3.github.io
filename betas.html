@@ -10,17 +10,17 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
 </style>
 <script>
 (function(){
-  // SHA-512 hash of "secretstuff"
+ 
   const _0x1a2b=["181c1b0c2534946c647ae1a3b557d0db6e49ad8728972f1719a033c7a088c6d2f74fb251cb0706da352d12d48e1f8f981a098149df3ea1b4a9c1ae1dc13ed36c"];
 
-  // Hash a string with SHA-512
+
   async function _0x3f4c(_0x5a6d){
     const _0x7c8f=new TextEncoder();
     const _0x9d2b=await crypto.subtle.digest("SHA-512",_0x7c8f.encode(_0x5a6d));
     return Array.from(new Uint8Array(_0x9d2b)).map(b=>b.toString(16).padStart(2,"0")).join("");
   }
 
-  // Password check
+
   window.checkPassword=async function(){
     const _0xa1b2=document.getElementById("pass").value.trim();
     const _0xc3d4=await _0x3f4c(_0xa1b2);
@@ -33,14 +33,14 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
     }
   };
 
-  // AES key derivation
+
   async function _0x5f6a(p,salt){
     const enc=new TextEncoder();
     const km=await crypto.subtle.importKey("raw",enc.encode(p),"PBKDF2",false,["deriveKey"]);
     return crypto.subtle.deriveKey({name:"PBKDF2",salt:enc.encode(salt),iterations:100000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
   }
 
-  // Encrypt file
+
   window.encryptFile=async function(f){
     const ab=await f.arrayBuffer();
     const iv=crypto.getRandomValues(new Uint8Array(12));
@@ -51,7 +51,7 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
     const a=document.createElement("a");a.href=url;a.download=f.name+".enc";a.click();URL.revokeObjectURL(url);
   }
 
-  // Decrypt file
+
   window.decryptFile=async function(url,filename){
     const resp=await fetch(url);const ab=await resp.arrayBuffer();const iv=ab.slice(0,12);const data=ab.slice(12);
     const key=await _0x5f6a(window.userPassword,"mySalt123");
@@ -62,7 +62,7 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
     }catch(e){alert("Failed to decrypt. Wrong password or corrupted file.");console.error(e);}
   }
 
-  // Handle file upload
+
   window.processFile=function(e){const f=e.target.files[0];if(f)window.encryptFile(f)}
 })();
 </script>
@@ -93,7 +93,7 @@ body{font-family:Arial,sans-serif;margin:0;color:#ddd}#protected{display:none}#l
 <ul>
 <li><img src="./src/assets/home.png" alt="Home"><a href="index.html">Home</a></li>
 <li><img src="./src/assets/portfolio.png" alt="Portfolio"><a href="portfolio.html">Portfolio</a></li>
-<li><img src="./src/assets/betas.png" alt="Public Betas"><a href="betas.html">Public Betas</a></li>
+<li><img src="./src/assets/betas.png" alt="Public Betas"><a href="betas.html">Betas</a></li>
 </ul>
 </nav>
 <div id="file-upload-container">
