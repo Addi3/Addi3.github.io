@@ -50,8 +50,8 @@ h2 {
 .navbar ul{
   list-style-type: none;
   background-color: rgb(52, 52, 52);
+  margin-top: 10px;
   padding: 0px;
-  margin: 0px;
   overflow: hidden;
 }
 

@@ -51,7 +51,7 @@ h2 {
     border: 1px solid black;
 }
 .grow:hover{
-    transform:scale(1.5);
+    transform:scale(1.15);
     background: rgb(156, 156, 156);
     box-shadow: 0 0 100px rgb(156, 156, 156);
 }
