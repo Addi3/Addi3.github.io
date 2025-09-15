@@ -66,3 +66,9 @@ h2 {
 .navbar a:hover{
   background-color: rgb(182, 181, 181)
 }
+
+a:link {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
