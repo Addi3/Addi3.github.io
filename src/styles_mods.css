@@ -20,7 +20,7 @@ body {
 
 section{
   padding-block: 1rem;
-  background: rgb(31, 31, 31);
+  background: rgb(32,34,37);
 }
 
 .horizontal{
@@ -28,14 +28,6 @@ section{
   linear-gradient();
 }
 
-
-.avatar {
-  vertical-align: middle;
-  align-items: left;
-  width: 300px;
-  height: 300px;
-  border-radius: 30%;
-}
 h2 {
   font-size: 30px;
 }
@@ -50,9 +42,9 @@ h2 {
     border: 1px solid black;
 }
 .grow:hover{
-    transform:scale(1.5);
-    background: rgb(156, 156, 156);
-    box-shadow: 0 0 100px rgb(156, 156, 156);
+    transform:scale(1.15);
+    background: rgb(44, 44, 44);
+    box-shadow: 0 0 100px rgb(90, 90, 90);
 }
 
 .navbar ul{
@@ -73,29 +65,4 @@ h2 {
 
 .navbar a:hover{
   background-color: rgb(182, 181, 181)
-}
-
-
-
-.betabar ul{
-  list-style-type: none;
-  background-color: rgb(52, 52, 52);
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-}
-
-.betabar a{
-  color: rgb(63, 165, 255);
-  padding: 15px;
-  display: block;
-  text-align: center;
-}
-
-.betabar a:hover{
-  background-color: rgb(182, 181, 181)
-}
-
-.betabar {
-  margin-bottom: -10px; /* Adjust the number for more/less space */
 }
