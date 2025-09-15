@@ -1,12 +1,11 @@
-
 body {
   background-repeat: inherit;
   background-attachment: scroll;
-  background-size:120rem;
+  background-size:80rem;
   background-position-y: -10rem;
   font-family: system-ui;
   margin: 3rem;
-  background-color: rgb(32,34,37);
+  background-color: rgb(25, 25, 26);
 }
 
 
