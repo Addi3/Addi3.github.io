@@ -55,23 +55,18 @@ I am an 18 year old who creates content online mostly based around Doctor Who, M
   async function loadLatestVideo() {
     try {
       const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-      
-      const res = await fetch(proxyUrl);
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+      const res = await fetch(apiUrl);
       const data = await res.json();
 
-      // Parse the returned contents (XML as string)
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(data.contents, "application/xml");
-
-      const entries = xml.getElementsByTagName("entry");
-      if (!entries.length) {
+      if (!data.items || data.items.length === 0) {
         document.getElementById("latest-video").innerText = "No videos found.";
         return;
       }
 
-      const latest = entries[0];
-      const videoId = latest.getElementsByTagName("yt:videoId")[0].textContent;
+      const latest = data.items[0];
+      const videoId = latest.link.split("v=")[1];
 
       document.getElementById("latest-video").innerHTML = `
         <iframe
