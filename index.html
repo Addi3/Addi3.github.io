@@ -36,19 +36,46 @@
         
   <button class="tablinks" onclick="opentab(event, 'Home')" style="color: rgb(202,202,202)" id="defaultOpen">Home</button>
   <button class="tablinks" onclick="opentab(event, 'Mods')" style="color: rgb(202,202,202)" >Mods</button>
-  <button class="tablinks" onclick="opentab(event, 'folio')" style="color: rgb(202,202,202)">Portfolio</button>
-  <button class="tablinks" onclick="opentab(event, 'talk')" style="color: rgb(202,202,202)">Dev Talk</button>
+  <button class="tablinks" onclick="opentab(event, 'Folio')" style="color: rgb(202,202,202)">Portfolio</button>
+  <button class="tablinks" onclick="opentab(event, 'Talk')" style="color: rgb(202,202,202)">Dev Talk</button>
  <button class="tablinks" onclick="opentab(event, 'Links')" style="color: rgb(202,202,202)">Links</button>
+ <button class="tablinks" onclick="opentab(event, 'Help')" style="color: rgb(202,202,202)">Helpful Stuff</button>
 </div>
 
 <div id="Home" class="tabcontent">
-   
-<center>
-    <p style="color: aliceblue;">Hi, I'm Addie (aka: AddieDaBaddie or Addie Astarr).
-I am an 18 year old who creates content online mostly based around Doctor Who, Minecraft and other SciFi related topics. I also love other things like; trains, taking photos, and listening to/creating music. I am currently learning Java, html and trying to perfect my pixel art skills!</p>
-   <hr width="100%;" color="#707070" size="2">
-<h3 style="color: aliceblue;">Latest Video!</h3>
-<div id="latest-video"></div>
+  <div class="home-container">
+    <section class="intro">
+      <p>
+        Hi, I'm Addie (aka: AddieDaBaddie or Addie Astarr). I am an 18-year-old who creates content online mostly based around Doctor Who, Minecraft, and other SciFi-related topics. 
+        I also love other things like trains, photography, and listening to/creating music. I am currently learning Java and HTML, and working on perfecting my pixel art skills!
+      </p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="latest-video-section">
+      <h3>Latest Video!</h3>
+      <div id="latest-video" class="video-wrapper"></div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="languages-section">
+      <h3>Currently Known Languages</h3>
+      <div class="languages-grid">
+        <div class="language-item">
+          <img src="./src/assets/socials/java.svg" alt="Java">
+          <span>Java</span>
+        </div>
+        <div class="language-item">
+          <img src="./src/assets/socials/html.svg" alt="HTML">
+          <span>HTML</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
 <script>
   const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";
 
@@ -70,8 +97,8 @@ I am an 18 year old who creates content online mostly based around Doctor Who, M
 
       document.getElementById("latest-video").innerHTML = `
         <iframe
-          width="560"
-          height="315"
+          width="100%"
+          height="515"
           src="https://www.youtube.com/embed/${videoId}"
           title="Latest video"
           frameborder="0"
@@ -87,8 +114,6 @@ I am an 18 year old who creates content online mostly based around Doctor Who, M
 
   loadLatestVideo();
 </script>
-</center>
-</div>
 
 <div id="Mods" class="tabcontent">
   <br>
@@ -210,81 +235,237 @@ I am an 18 year old who creates content online mostly based around Doctor Who, M
          </center>
 </div>
 
-<div id="folio" class="tabcontent">
+<div id="Folio" class="tabcontent">
 
 <a>hi</a>
 
 </div>
 
-<div id="talk" class="tabcontent">
+<div id="Talk" class="tabcontent">
+  <div class="talk-container">
 
- <center>
-        
-<section class="horizontal">
-<div class="wrapper">
-<p style="color:aliceblue"> This is where I'll answer modding related questions like; why im on fabric, why im on 1.20.1 and much more! 
-</p>
-<p style="color:aliceblue">
-(Also sorry if this seems like a lot, this is more for people who are interested in Minecraft modding)</p>
-</div>
-</section>
-<hr width="100%;" color="#707070" size="2">
-<section class="horizontal">
-<h3 style="color:aliceblue" class="section-title" >Why I use fabric?</h3>
-<p style="color: aliceblue;"> Before making stuff like AITExtras, I use to use a modding software called MCreator that was focused on making Minecraft modding "easy". 
-This however was made for Forge so I was forced to use it. But I'd already used Forge for a couple years as at that time it was the most popular mod loader, but I was getting kinda bored of what it provided. This was also around the time I had discovered other mod loaders (fabric and quilt). 
-These where both newer so had better performance BUT "from the front" seemed to lacked in "Popular" mods. I had also found a plugin for MCreator that allowed Fabric porting so I decided to move over. The plugin was good for a while but after a
-short time, it seemed that I had been loosing out on most features the software provided. This made the already pretty limiting software feel even more limiting, the plugin i was using was also gonna loose support and not be on newer version past 1.20.1 . 
-So I decided to eventually learn Java after putting it off for so long (this was also around the time that Amble Labs decided to invite me to their team).</p>
+    <section class="talk-intro">
+      <p>
+        This is where I'll answer modding-related questions like why I'm on Fabric, why I'm on 1.20.1, and much more!
+      </p>
+      <p class="note">
+        (Also, sorry if this seems like a lot. This is more for people who are interested in Minecraft modding.)
+      </p>
+    </section>
 
+    <hr class="divider">
 
-<h3 style="color:aliceblue" class="section-title" >Will I ever move to 1.21+?</h3>
-<p style="color: aliceblue;"> I have been using 1.20.1 since day 1 of making minecraft mods (both MCreator and acutal code), It is also the version that I have gotten use to coding in. Since there have been a lot of versions between 1.21
-   that means that quite a bit of "back end code" would have been changed which means I will basically be re-learning most of what I already know but 1.21+ has a lot of cool new stuff like; blocks, mobs, items and even some
-  cool new back end stuff like datapackable features, item components and Vibrant Visuals, and I do eventually want to move to 1.21+ (probably 1.21.8+), just not any time soon!. 
-</p>
+    <section class="talk-section">
+      <h3>Why I use Fabric?</h3>
+      <p>
+        Before making stuff like AITExtras, I used to use a modding software called MCreator that focused on making Minecraft modding "easy". 
+        This was made for Forge, so I was forced to use it. I had already used Forge for a couple of years, but I was getting bored of what it provided.
+        I discovered other mod loaders (Fabric and Quilt) which were newer and had better performance, but seemed to lack popular mods. 
+        I found a plugin for MCreator that allowed Fabric porting, so I decided to move over. The plugin was good for a while but eventually limited the software’s functionality. 
+        I decided to learn Java (around the time Amble Labs invited me to their team).
+      </p>
+    </section>
 
+    <section class="talk-section">
+      <h3>Will I ever move to 1.21+?</h3>
+      <p>
+        I have been using 1.20.1 since day 1 of making Minecraft mods. It's the version I am comfortable coding in. Moving to 1.21+ would require re-learning much of the back-end code. 
+        However, 1.21+ introduces new blocks, mobs, items, and advanced features like datapackable features, item components, and vibrant visuals. I eventually want to move to 1.21+ (probably 1.21.8+), just not anytime soon.
+      </p>
+    </section>
 
+  </div>
 </div>
 
 <div id="Links" class="tabcontent">
-  <br>
-<center><u style="color:aliceblue">Click the icon to open the link!</u>
-<br>
-<br>
-<a href="https://discord.gg/kndce97FyU"><img src="./src/assets/socials/discord_logo.svg" class="grow" alt="Github" style="width:42px;height:42px;" style="color: aliceblue;"></a>
- <p class="text">Discord</p>
-</p>
+  <div class="links-box">
+    <div class="social-grid">
+      <div class="social-item discord">
+        <a href="https://discord.gg/kndce97FyU" target="_blank">
+          <img src="./src/assets/socials/discord_logo.svg" alt="Discord">
+        </a>
+        <span class="text">Discord</span>
+      </div>
 
- <a href="https://github.com/Addi3"><img src="./src/assets/socials/github_logo.svg" class="grow" alt="Github" style="width:42px;height:42px;"></a>  
- <p class="text">Github</p> 
-</p>
+      <div class="social-item github">
+        <a href="https://github.com/Addi3" target="_blank">
+          <img src="./src/assets/socials/github_logo.svg" alt="Github">
+        </a>
+        <span class="text">Github</span>
+      </div>
 
-<a href="https://modrinth.com/user/Addi3_Astarr"><img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Modrinth" style="width:42px;height:42px;"></a>
-  <p class="text">Modrinth</p>
-</p>
+      <div class="social-item modrinth">
+        <a href="https://modrinth.com/user/Addi3_Astarr" target="_blank">
+          <img src="./src/assets/socials/modrinth_logo.svg" alt="Modrinth">
+        </a>
+        <span class="text">Modrinth</span>
+      </div>
 
-  <a href="https://www.youtube.com/@addisonmakesstuff?sub_confirmation=1"><img src="./src/assets/socials/youtube_logo.svg" class="grow" alt="Youtube" style="width:42px;height:42px;"></a>
- <p class="text">Youtube</p>
-</p>
+      <div class="social-item youtube">
+        <a href="https://www.youtube.com/@addisonmakesstuff?sub_confirmation=1" target="_blank">
+          <img src="./src/assets/socials/youtube_logo.svg" alt="Youtube">
+        </a>
+        <span class="text">Youtube</span>
+      </div>
 
-<a href="https://soundcloud.com/addie-astarr"><img src="./src/assets/socials/soundcloud.svg" class="grow" alt="Modrinth" style="width:42px;height:42px;"></a>
-  <p class="text">Soundcloud</p>
-</p>
+      <div class="social-item soundcloud">
+        <a href="https://soundcloud.com/addie-astarr" target="_blank">
+          <img src="./src/assets/socials/soundcloud.svg" alt="Soundcloud">
+        </a>
+        <span class="text">Soundcloud</span>
+      </div>
 
-  <a href="https://bsky.app/profile/4ddiedabaddi3.bsky.social"><img src="./src/assets/socials/bluesky.svg" class="grow" alt="Youtube" style="width:42px;height:42px;"></a>
- <p class="text">Bluesky</p>
-</p>
-<a href="https://www.twitch.tv/addi3_astarr"><img src="./src/assets/socials/twitch.svg" class="grow" alt="Modrinth" style="width:42px;height:42px;"></a>
-  <p class="text">Twitch</p>
-</p>
+      <div class="social-item bluesky">
+        <a href="https://bsky.app/profile/4ddiedabaddi3.bsky.social" target="_blank">
+          <img src="./src/assets/socials/bluesky.svg" alt="Bluesky">
+        </a>
+        <span class="text">Bluesky</span>
+      </div>
 
-<a href="https://ko-fi.com/addi3dabaddie"><img src="./src/assets/socials/kofi_logo.svg" class="grow" alt="Kofi" style="width:42px;height:42px;"></a>
-<p class="text">Kofi</p>
-</p>
-</center>
+      <div class="social-item twitch">
+        <a href="https://www.twitch.tv/addi3_astarr" target="_blank">
+          <img src="./src/assets/socials/twitch.svg" alt="Twitch">
+        </a>
+        <span class="text">Twitch</span>
+      </div>
+
+      <div class="social-item kofi">
+        <a href="https://ko-fi.com/addi3dabaddie" target="_blank">
+          <img src="./src/assets/socials/kofi_logo.svg" alt="Ko-fi">
+        </a>
+        <span class="text">Ko-fi</span>
+      </div>
+    </div>
+  </div>
 </div>
 
+
+
+
+
+<div id="Help" class="tabcontent">
+  <div class="converter-box">
+    <h2>Image Converter</h2>
+
+    <input id="file" type="file" accept="image/*" multiple />
+
+    <div class="buttons">
+      <select id="exportType">
+        <option value="svg">SVG</option>
+        <option value="png">PNG</option>
+        <option value="jpg">JPG</option>
+      </select>
+      <button id="convertBtn">Convert All</button>
+      <button id="clearBtn">Clear</button>
+    </div>
+
+    <a id="downloadLink" style="display:none;"></a>
+
+    <div id="preview"></div>
+  </div>
+
+  <!-- ImageTracer.js for SVG conversion -->
+  <script src="https://cdn.jsdelivr.net/gh/jankovicsandras/imagetracerjs/imagetracer_v1.2.6.js"></script>
+  <!-- JSZip -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script>
+    const fileInput = document.getElementById('file');
+    const convertBtn = document.getElementById('convertBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const downloadLink = document.getElementById('downloadLink');
+    const preview = document.getElementById('preview');
+    const exportType = document.getElementById('exportType');
+    let files = [];
+
+    fileInput.addEventListener('change', e => {
+      files = Array.from(e.target.files);
+      preview.innerHTML = '';
+      downloadLink.style.display = 'none';
+
+      files.forEach(file => {
+        const img = document.createElement('img');
+        img.className = 'thumb';
+        img.alt = file.name;
+        img.title = file.name;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          if(file.type.startsWith('image/')) img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+
+        preview.appendChild(img);
+      });
+    });
+
+    convertBtn.addEventListener('click', async () => {
+      if (!files.length) return alert('Please select one or more images.');
+      convertBtn.disabled = true;
+      convertBtn.textContent = 'Converting...';
+
+      const zip = new JSZip();
+      let convertedCount = 0;
+
+      for (const file of files) {
+        const type = exportType.value;
+
+        if(type === 'svg') {
+          // Convert image to SVG using ImageTracer
+          const dataUrl = await new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+          });
+
+          const svgStr = await new Promise(resolve => ImageTracer.imageToSVG(dataUrl, svgStr => resolve(svgStr)));
+          zip.file(file.name.replace(/\.[^/.]+$/, ".svg"), svgStr);
+        } else {
+          // Convert to PNG or JPG using canvas
+          const img = await new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const image = new Image();
+              image.onload = () => resolve(image);
+              image.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+          });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          const blob = await new Promise(resolve => canvas.toBlob(resolve, `image/${type}`));
+          zip.file(file.name.replace(/\.[^/.]+$/, `.${type}`), blob);
+        }
+
+        convertedCount++;
+      }
+
+      const blob = await zip.generateAsync({ type: "blob" });
+      const url = URL.createObjectURL(blob);
+      downloadLink.href = url;
+      downloadLink.download = `converted_images.zip`;
+      downloadLink.style.display = 'inline-block';
+      downloadLink.textContent = `Download ZIP (${convertedCount} files)`;
+
+      convertBtn.disabled = false;
+      convertBtn.textContent = 'Convert All';
+    });
+
+    clearBtn.addEventListener('click', () => {
+      files = [];
+      preview.innerHTML = '';
+      downloadLink.style.display = 'none';
+      fileInput.value = '';
+    });
+  </script>
+</body>
+
+</div>
 </div>
 
 <script>
