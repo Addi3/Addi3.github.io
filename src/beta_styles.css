@@ -1,14 +1,14 @@
+
 body {
+  background-image: url('assets/background.svg');
   background-repeat: inherit;
   background-attachment: scroll;
-  background-size:80rem;
+  background-size:120rem;
   background-position-y: -10rem;
   font-family: system-ui;
   margin: 3rem;
-  background-color: rgb(25, 25, 26);
+  background-color: black;
 }
-
-
 
 .wrapper {
   max-width: 100rem;
@@ -27,27 +27,7 @@ section{
   linear-gradient();
 }
 
-
-h2 {
-  font-size: 30px;
-}
-
-.grow{
-    transition: transform .2s;
-    width:50px;
-    height:50px;
-    margin:0 auto;
-    background-color: rgb(31, 31, 31);
-    border-radius: 10px;
-    border: 1px solid black;
-}
-.grow:hover{
-    transform:scale(1.15);
-    background: rgb(156, 156, 156);
-    box-shadow: 0 0 100px rgb(156, 156, 156);
-}
-
-.navbar ul{
+.betabar ul{
   list-style-type: none;
   background-color: rgb(52, 52, 52);
   padding: 0px;
@@ -55,14 +35,17 @@ h2 {
   overflow: hidden;
 }
 
-.navbar a{
-  color: aliceblue;
-  text-decoration: none;
+.betabar a{
+  color: rgb(63, 165, 255);
   padding: 15px;
   display: block;
   text-align: center;
 }
 
-.navbar a:hover{
+.betabar a:hover{
   background-color: rgb(182, 181, 181)
+}
+
+.betabar {
+  margin-bottom: -10px; /* Adjust the number for more/less space */
 }
