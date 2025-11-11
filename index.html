@@ -370,99 +370,139 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <script>
-    const fileInput = document.getElementById('file');
-    const convertBtn = document.getElementById('convertBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const downloadLink = document.getElementById('downloadLink');
-    const preview = document.getElementById('preview');
-    const exportType = document.getElementById('exportType');
-    let files = [];
+const fileInput = document.getElementById('file');
+const convertBtn = document.getElementById('convertBtn');
+const clearBtn = document.getElementById('clearBtn');
+const downloadLink = document.getElementById('downloadLink');
+const preview = document.getElementById('preview');
+const exportType = document.getElementById('exportType');
+let files = [];
 
-    fileInput.addEventListener('change', e => {
-      files = Array.from(e.target.files);
-      preview.innerHTML = '';
-      downloadLink.style.display = 'none';
+fileInput.addEventListener('change', e => {
+  files = Array.from(e.target.files);
+  preview.innerHTML = '';
+  downloadLink.style.display = 'none';
 
-      files.forEach(file => {
-        const img = document.createElement('img');
-        img.className = 'thumb';
-        img.alt = file.name;
-        img.title = file.name;
+  files.forEach(file => {
+    const img = document.createElement('img');
+    img.className = 'thumb';
+    img.alt = file.name;
+    img.title = file.name;
 
+    const reader = new FileReader();
+    reader.onload = () => {
+      if(file.type.startsWith('image/')) img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+
+    preview.appendChild(img);
+  });
+});
+
+convertBtn.addEventListener('click', async () => {
+  if (!files.length) return alert('Please select one or more images.');
+  convertBtn.disabled = true;
+  convertBtn.textContent = 'Converting...';
+
+  if (files.length === 1) {
+    const file = files[0];
+    const type = exportType.value;
+
+    if(type === 'svg') {
+      const dataUrl = await new Promise(resolve => {
         const reader = new FileReader();
-        reader.onload = () => {
-          if(file.type.startsWith('image/')) img.src = reader.result;
-        };
+        reader.onload = () => resolve(reader.result);
         reader.readAsDataURL(file);
-
-        preview.appendChild(img);
       });
-    });
 
-    convertBtn.addEventListener('click', async () => {
-      if (!files.length) return alert('Please select one or more images.');
-      convertBtn.disabled = true;
-      convertBtn.textContent = 'Converting...';
-
-      const zip = new JSZip();
-      let convertedCount = 0;
-
-      for (const file of files) {
-        const type = exportType.value;
-
-        if(type === 'svg') {
-          // Convert image to SVG using ImageTracer
-          const dataUrl = await new Promise(resolve => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.readAsDataURL(file);
-          });
-
-          const svgStr = await new Promise(resolve => ImageTracer.imageToSVG(dataUrl, svgStr => resolve(svgStr)));
-          zip.file(file.name.replace(/\.[^/.]+$/, ".svg"), svgStr);
-        } else {
-          // Convert to PNG or JPG using canvas
-          const img = await new Promise(resolve => {
-            const reader = new FileReader();
-            reader.onload = () => {
-              const image = new Image();
-              image.onload = () => resolve(image);
-              image.src = reader.result;
-            };
-            reader.readAsDataURL(file);
-          });
-
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
-
-          const blob = await new Promise(resolve => canvas.toBlob(resolve, `image/${type}`));
-          zip.file(file.name.replace(/\.[^/.]+$/, `.${type}`), blob);
-        }
-
-        convertedCount++;
-      }
-
-      const blob = await zip.generateAsync({ type: "blob" });
+      const svgStr = await new Promise(resolve => ImageTracer.imageToSVG(dataUrl, svgStr => resolve(svgStr)));
+      const blob = new Blob([svgStr], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
       downloadLink.href = url;
-      downloadLink.download = `converted_images.zip`;
+      downloadLink.download = file.name.replace(/\.[^/.]+$/, ".svg");
       downloadLink.style.display = 'inline-block';
-      downloadLink.textContent = `Download ZIP (${convertedCount} files)`;
+      downloadLink.textContent = `Download ${downloadLink.download}`;
+    } else {
+      const img = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const image = new Image();
+          image.onload = () => resolve(image);
+          image.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
 
-      convertBtn.disabled = false;
-      convertBtn.textContent = 'Convert All';
-    });
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
 
-    clearBtn.addEventListener('click', () => {
-      files = [];
-      preview.innerHTML = '';
-      downloadLink.style.display = 'none';
-      fileInput.value = '';
-    });
-  </script>
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, `image/${type}`));
+      const url = URL.createObjectURL(blob);
+      downloadLink.href = url;
+      downloadLink.download = file.name.replace(/\.[^/.]+$/, `.${type}`);
+      downloadLink.style.display = 'inline-block';
+      downloadLink.textContent = `Download ${downloadLink.download}`;
+    }
+  } else {
+    const zip = new JSZip();
+    let convertedCount = 0;
+
+    for (const file of files) {
+      const type = exportType.value;
+
+      if(type === 'svg') {
+        const dataUrl = await new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+        const svgStr = await new Promise(resolve => ImageTracer.imageToSVG(dataUrl, svgStr => resolve(svgStr)));
+        zip.file(file.name.replace(/\.[^/.]+$/, ".svg"), svgStr);
+      } else {
+        const img = await new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const image = new Image();
+            image.onload = () => resolve(image);
+            image.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, `image/${type}`));
+        zip.file(file.name.replace(/\.[^/.]+$/, `.${type}`), blob);
+      }
+
+      convertedCount++;
+    }
+
+    const blob = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.download = `converted_images.zip`;
+    downloadLink.style.display = 'inline-block';
+    downloadLink.textContent = `Download ZIP (${convertedCount} files)`;
+  }
+  convertBtn.disabled = false;
+  convertBtn.textContent = 'Convert All';
+});
+
+clearBtn.addEventListener('click', () => {
+  files = [];
+  preview.innerHTML = '';
+  downloadLink.style.display = 'none';
+  fileInput.value = '';
+});
+</script>
 </body>
 
 </div>
