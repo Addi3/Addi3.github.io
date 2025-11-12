@@ -724,6 +724,7 @@ a:hover,
   box-shadow: 0 6px 15px rgba(0,0,0,0.5);
 }
 
+
 @media screen and (max-width: 600px) {
   .favs-container {
     flex-direction: column;
