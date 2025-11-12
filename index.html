@@ -767,15 +767,15 @@ function opentab(evt, tabName) {
 
 <script>
 const repoUrl = 'https://github.com/Addi3/Addi3.github.io';
-let lastCommitSha = null;
-
-// Define your sound file path relative to your project
 const notificationSound = './src/assets/ding.mp3';
 
 // Extract owner and repo from URL
 const urlParts = repoUrl.replace('https://github.com/', '').split('/');
 const repoOwner = urlParts[0];
 const repoName = urlParts[1];
+
+// Load last seen SHA from localStorage
+let lastCommitSha = localStorage.getItem('lastCommitSha');
 
 // Function to play the sound
 function playSound() {
@@ -785,7 +785,7 @@ function playSound() {
 
 // Function to show notification
 function showReloadNotification() {
-  playSound(); // play the defined audio file
+  playSound();
   const notif = document.createElement('div');
   notif.textContent = 'New commit detected! Please reload the page.';
   notif.style.position = 'fixed';
@@ -798,8 +798,7 @@ function showReloadNotification() {
   notif.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
   notif.style.zIndex = '9999';
   document.body.appendChild(notif);
-
-  setTimeout(() => notif.remove(), 5000); // remove after 5s
+  setTimeout(() => notif.remove(), 5000);
 }
 
 // Check GitHub for new commits
@@ -810,12 +809,15 @@ async function checkForNewCommit() {
     const latestCommit = commits[0];
 
     if (!lastCommitSha) {
-      lastCommitSha = latestCommit.sha; // initialize
+      // Initialize localStorage if empty
+      lastCommitSha = latestCommit.sha;
+      localStorage.setItem('lastCommitSha', lastCommitSha);
       return;
     }
 
     if (latestCommit.sha !== lastCommitSha) {
       lastCommitSha = latestCommit.sha;
+      localStorage.setItem('lastCommitSha', lastCommitSha);
       showReloadNotification();
     }
   } catch (err) {
@@ -823,9 +825,8 @@ async function checkForNewCommit() {
   }
 }
 
-// Initial check
+// Initial check and repeat every 60s
 checkForNewCommit();
-// Check every 60 seconds
 setInterval(checkForNewCommit, 60000);
 
 // --- TEST BUTTON ---
@@ -843,6 +844,7 @@ testBtn.style.cursor = 'pointer';
 testBtn.addEventListener('click', showReloadNotification);
 document.body.appendChild(testBtn);
 </script>
+
 
 
 
