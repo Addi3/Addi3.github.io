@@ -736,6 +736,17 @@ a:hover,
   }
 }
 
+.favs-card img {
+  max-height: 70px;    /* Adjust this to whatever height you want */
+  width: auto;          /* Let width scale proportionally */
+  height: auto;         /* Maintain aspect ratio */
+  object-fit: contain;  /* Fit inside container without cropping */
+  display: block;
+  padding-bottom: 10px;
+  margin: 0 auto;       /* Center image horizontally */
+}
+
+
 /* === SHOWCASE SLIDESHOW === */
 .showcase-container {
   max-width: 900px;
