@@ -805,6 +805,7 @@ function showReloadNotification() {
   setTimeout(() => notif.remove(), 5000);
 }
 
+
 async function checkForNewCommit() {
   try {
     const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
