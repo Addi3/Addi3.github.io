@@ -66,7 +66,25 @@
       <h3>Latest Video!</h3>
       <div id="latest-video" class="video-wrapper"></div>
     </section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";
+  const latestVideoContainer = document.getElementById("latest-video");
 
+  const uploadsPlaylistId = "UU" + CHANNEL_ID.slice(2);
+
+  latestVideoContainer.innerHTML = `
+    <iframe
+      width="100%"
+      height="515"
+      src="https://www.youtube.com/embed?listType=playlist&list=${uploadsPlaylistId}&index=1"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  `;
+});
+</script>
     <hr class="divider">
 
     <section class="languages-section">
@@ -94,29 +112,8 @@
   </div>
 </div>
 
-<div id="latest-video">Loading latest video...</div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";
-  const latestVideoContainer = document.getElementById("latest-video");
 
-  // The channel's uploads playlist ID is always "UU" + rest of channel ID after "UC"
-  const uploadsPlaylistId = "UU" + CHANNEL_ID.slice(2);
-
-  // Embed the first video from the playlist
-  latestVideoContainer.innerHTML = `
-    <iframe
-      width="100%"
-      height="515"
-      src="https://www.youtube.com/embed?listType=playlist&list=${uploadsPlaylistId}&index=1"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-  `;
-});
-</script>
 
 
 
