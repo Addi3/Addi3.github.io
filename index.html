@@ -239,7 +239,6 @@
   <center><h3>Here is the highlights of my work!</h3>
     <hr width="100%;" color="#707070" size="2">
 <h2>Images</h2>
-  <!-- Image Showcase -->
 <div id="showcase-container" style="position:relative; display:flex; justify-content:center; align-items:center; width:90%; max-width:1400px; height:90vh; margin:auto; overflow:hidden;"></div>
 <div id="showcase-zoom-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000;">
   <img id="showcase-zoomed-img" style="max-width:98%; max-height:98%; border-radius:12px;">
@@ -247,7 +246,6 @@
     <hr width="100%;" color="#707070" size="2">
 
 <h2>Videos</h2>
-<!-- Video Showcase -->
 <div id="video-showcase-container" 
      style="position:relative; display:flex; justify-content:center; align-items:center; 
             width:90%; max-width:1200px; height:70vh; margin:2rem auto; overflow:hidden;">
@@ -275,7 +273,6 @@ const imageFiles = [
 const imgContainer = document.getElementById('showcase-container');
 const imgFragment = document.createDocumentFragment();
 
-// Move the whole image container up more
 imgContainer.style.marginTop = "-40px";
 
 imageFiles.forEach(file => {
@@ -288,8 +285,7 @@ imageFiles.forEach(file => {
   slide.style.height = "90%";
   slide.style.overflow = "hidden";
 
-  // Move each slide up slightly more
-  slide.style.transform = "translateY(-20px)"; // increased from -10px
+  slide.style.transform = "translateY(-20px)"; 
 
   const img = document.createElement('img');
   img.src = `./src/assets/portfolio/${file}`;
@@ -305,7 +301,6 @@ imageFiles.forEach(file => {
 });
 imgContainer.appendChild(imgFragment);
 
-// floating arrows
 const imgPrev = document.createElement('a');
 imgPrev.className='showcase-prev';
 imgPrev.innerHTML='&#10094;';
@@ -333,7 +328,6 @@ function showImageShowcase(n){
   slides[imgIndex-1].style.display="flex";
 }
 
-// zoom
 const imgOverlay=document.getElementById("showcase-zoom-overlay");
 const zoomedImg=document.getElementById("showcase-zoomed-img");
 
@@ -363,17 +357,16 @@ videoFiles.forEach(file => {
 video.src = `./src/assets/portfolio/${file}`;
 video.className = 'showcase-video';
 video.controls = true;
-video.style.width = "100%";   // match container width
-video.style.height = "100%";  // match container height
-video.style.objectFit = "cover"; // fill container without stretching
-video.style.borderRadius = "8px"; // rounded corners
+video.style.width = "100%";   
+video.style.height = "100%";  
+video.style.objectFit = "cover"; 
+video.style.borderRadius = "8px"; 
 
   slide.appendChild(video);
   slidesFragment.appendChild(slide);
 });
 videoContainer.appendChild(slidesFragment);
 
-// floating arrows
 const prevBtn = document.createElement('a');
 prevBtn.className = 'showcase-prev';
 prevBtn.innerHTML = '&#10094;';
@@ -571,10 +564,8 @@ function clearConverter() {
   fileInput.value = '';
 }
 
-// Clear on page reload
 window.addEventListener('beforeunload', clearConverter);
 
-// Clear when switching tabs
 const tabButtons = document.querySelectorAll('.tab button');
 tabButtons.forEach(btn => {
   btn.addEventListener('click', clearConverter);
