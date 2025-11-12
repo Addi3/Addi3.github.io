@@ -34,9 +34,9 @@
 
     <div class="tab">
         
-  <button class="tablinks" onclick="opentab(event, 'Home')" style="color: rgb(202,202,202)" id="defaultOpen">Home</button>
+  <button class="tablinks" onclick="opentab(event, 'Home')" style="color: rgb(202,202,202)">Home</button>
   <button class="tablinks" onclick="opentab(event, 'Mods')" style="color: rgb(202,202,202)" >Mods</button>
-  <button class="tablinks" onclick="opentab(event, 'Folio')" style="color: rgb(202,202,202)">Portfolio</button>
+  <button class="tablinks" onclick="opentab(event, 'Folio')" style="color: rgb(202,202,202)" id="defaultOpen">Portfolio</button>
   <button class="tablinks" onclick="opentab(event, 'Talk')" style="color: rgb(202,202,202)">Dev Talk</button>
  <button class="tablinks" onclick="opentab(event, 'Links')" style="color: rgb(202,202,202)">Links</button>
  <button class="tablinks" onclick="opentab(event, 'Help')" style="color: rgb(202,202,202)">Helpful Stuff</button>
@@ -178,15 +178,15 @@
       <p class="text">STARGATE: One-way portal transportation!</p>
       <br>
       <div class="container2">
-      <a href="https://modrinth.com/mod/amble-stargate"><img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Github" style="width:32px;height:32px;" style="color: aliceblue;"></a>
+      <a href="https://modrinth.com/mod/amble-stargate"><img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Image" style="width:32px;height:32px;" style="color: aliceblue;"></a>
       <a class="text2" href="https://modrinth.com/mod/amble-stargate">Modrinth</a>
       </div>
       <div class="container2">
-      <a href="https://www.curseforge.com/minecraft/mc-mods/stargate"><img src="./src/assets/socials/curseforge_logo.svg" class="grow" alt="Github" style="width:32px;height:32px;" style="color: aliceblue;"></a>
+      <a href="https://www.curseforge.com/minecraft/mc-mods/stargate"><img src="./src/assets/socials/curseforge_logo.svg" class="grow" alt="Image" style="width:32px;height:32px;" style="color: aliceblue;"></a>
       <a class="text2" href="https://www.curseforge.com/minecraft/mc-mods/stargate">Curseforge</a>  
       </div>
       <div class="container2">
-      <a href="https://github.com/amblelabs/stargate"><img src="./src/assets/socials/github_logo.svg" class="grow" alt="Github" style="width:32px;height:32px;" style="color: aliceblue;"></a>
+      <a href="https://github.com/amblelabs/stargate"><img src="./src/assets/socials/github_logo.svg" class="grow" alt="Image" style="width:32px;height:32px;" style="color: aliceblue;"></a>
       <a class="text2" href="https://github.com/amblelabs/stargate">Github</a>
       </div>
             </div>
@@ -203,14 +203,14 @@
       <p class="text">Adds a toaster and toast to minecraft</p>
       <br>
       <div class="container2">
-      <a href="https://modrinth.com/mod/toasted"><img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Github" style="width:32px;height:32px;" style="color: aliceblue;"></a>
+      <a href="https://modrinth.com/mod/toasted"><img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Image" style="width:32px;height:32px;" style="color: aliceblue;"></a>
       <a class="text2" href="https://modrinth.com/mod/toasted">Modrinth</a>
       </div>
       <div class="container2">
      
       </div>
       <div class="container2">
-      <a href="https://github.com/Addi3/toasted"><img src="./src/assets/socials/github_logo.svg" class="grow" alt="Github" style="width:32px;height:32px;" style="color: aliceblue;"></a>
+      <a href="https://github.com/Addi3/toasted"><img src="./src/assets/socials/github_logo.svg" class="grow" alt="Image" style="width:32px;height:32px;" style="color: aliceblue;"></a>
       <a class="text2" href="https://github.com/Addi3/toasted">Github</a>
       </div>
             </div>
@@ -236,10 +236,198 @@
 </div>
 
 <div id="Folio" class="tabcontent">
+  <center><h3>Here is the highlights of my work!</h3>
+    <hr width="100%;" color="#707070" size="2">
+<h2>Images</h2>
+  <!-- Image Showcase -->
+<div id="showcase-container" style="position:relative; display:flex; justify-content:center; align-items:center; width:90%; max-width:1400px; height:90vh; margin:auto; overflow:hidden;"></div>
+<div id="showcase-zoom-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000;">
+  <img id="showcase-zoomed-img" style="max-width:98%; max-height:98%; border-radius:12px;">
+</div>
+    <hr width="100%;" color="#707070" size="2">
 
-<a>hi</a>
+<h2>Videos</h2>
+<!-- Video Showcase -->
+<div id="video-showcase-container" 
+     style="position:relative; display:flex; justify-content:center; align-items:center; 
+            width:90%; max-width:1200px; height:70vh; margin:2rem auto; overflow:hidden;">
+</div>
+<div id="video-showcase-overlay" 
+     style="display:none; position:fixed; top:0; left:0; width:90%; height:70vh; 
+            background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000;">
+  <video id="video-showcase-zoomed" controls 
+         style="width:110%; height:110%; object-fit:cover; border-radius:8px;"></video>
+</div>
+
 
 </div>
+
+<script>
+/* ========== IMAGE SHOWCASE ========== */
+const imageFiles = [
+  'img1.svg','img2.svg','img3.svg','img4.svg','img5.svg',
+  'img6.gif','img7.svg','img8.svg','img9.svg','img10.svg',
+  'img11.svg','img12.svg','img13.svg','img14.svg','img15.svg',
+  'img16.svg','img17.svg','img18.svg','img19.svg','img20.svg',
+  'img21.svg','img22.svg','img23.svg','img24.svg'
+];
+
+const imgContainer = document.getElementById('showcase-container');
+const imgFragment = document.createDocumentFragment();
+
+// Move the whole image container up more
+imgContainer.style.marginTop = "-40px";
+
+imageFiles.forEach(file => {
+  const slide = document.createElement('div');
+  slide.className = 'showcase-slide showcase-fade';
+  slide.style.display = "flex";
+  slide.style.justifyContent = "center";
+  slide.style.alignItems = "center";
+  slide.style.width = "100%";
+  slide.style.height = "90%";
+  slide.style.overflow = "hidden";
+
+  // Move each slide up slightly more
+  slide.style.transform = "translateY(-20px)"; // increased from -10px
+
+  const img = document.createElement('img');
+  img.src = `./src/assets/portfolio/${file}`;
+  img.className = 'showcase-img';
+  img.style.width = "auto";
+  img.style.height = "90%";
+  img.style.objectFit = "contain"; 
+  img.style.borderRadius = "8px";
+  img.style.boxShadow = "0 2px 6px rgba(0,0,0,0.15)";
+
+  slide.appendChild(img);
+  imgFragment.appendChild(slide);
+});
+imgContainer.appendChild(imgFragment);
+
+// floating arrows
+const imgPrev = document.createElement('a');
+imgPrev.className='showcase-prev';
+imgPrev.innerHTML='&#10094;';
+imgPrev.style.cssText = "position:absolute; top:50%; left:10px; transform:translateY(-50%); font-size:40px; color:white; cursor:pointer; z-index:10;";
+imgPrev.onclick=()=>imageShowcasePlusSlides(-1);
+imgContainer.appendChild(imgPrev);
+
+const imgNext = document.createElement('a');
+imgNext.className='showcase-next';
+imgNext.innerHTML='&#10095;';
+imgNext.style.cssText = "position:absolute; top:50%; right:10px; transform:translateY(-50%); font-size:40px; color:white; cursor:pointer; z-index:10;";
+imgNext.onclick=()=>imageShowcasePlusSlides(1);
+imgContainer.appendChild(imgNext);
+
+let imgIndex=1;
+showImageShowcase(imgIndex);
+
+function imageShowcasePlusSlides(n){ showImageShowcase(imgIndex+=n); }
+
+function showImageShowcase(n){
+  const slides = imgContainer.getElementsByClassName("showcase-slide");
+  if(n>slides.length) imgIndex=1;
+  if(n<1) imgIndex=slides.length;
+  Array.from(slides).forEach(s=>s.style.display="none");
+  slides[imgIndex-1].style.display="flex";
+}
+
+// zoom
+const imgOverlay=document.getElementById("showcase-zoom-overlay");
+const zoomedImg=document.getElementById("showcase-zoomed-img");
+
+imgContainer.addEventListener("click",e=>{
+  if(e.target.classList.contains("showcase-img")){
+    zoomedImg.src=e.target.src;
+    imgOverlay.style.display="flex";
+  }
+});
+imgOverlay.addEventListener("click",()=>{imgOverlay.style.display="none";});
+
+/* ========== VIDEO SHOWCASE ========== */
+const videoFiles = ['video1.mp4','video2.mp4','video3.mp4','video4.mp4'];
+const videoContainer = document.getElementById('video-showcase-container');
+const slidesFragment = document.createDocumentFragment();
+
+videoFiles.forEach(file => {
+  const slide = document.createElement('div');
+  slide.className = 'showcase-slide showcase-fade';
+  slide.style.display = "flex";
+  slide.style.justifyContent = "center";
+  slide.style.alignItems = "center";
+  slide.style.width = "100%";
+  slide.style.height = "100%";
+
+ const video = document.createElement('video');
+video.src = `./src/assets/portfolio/${file}`;
+video.className = 'showcase-video';
+video.controls = true;
+video.style.width = "100%";   // match container width
+video.style.height = "100%";  // match container height
+video.style.objectFit = "cover"; // fill container without stretching
+video.style.borderRadius = "8px"; // rounded corners
+
+  slide.appendChild(video);
+  slidesFragment.appendChild(slide);
+});
+videoContainer.appendChild(slidesFragment);
+
+// floating arrows
+const prevBtn = document.createElement('a');
+prevBtn.className = 'showcase-prev';
+prevBtn.innerHTML = '&#10094;';
+prevBtn.style.cssText = "position:absolute; top:50%; left:10px; transform:translateY(-50%); font-size:40px; color:white; cursor:pointer; z-index:10;";
+prevBtn.onclick = () => videoShowcasePlusSlides(-1);
+videoContainer.appendChild(prevBtn);
+
+const nextBtn = document.createElement('a');
+nextBtn.className = 'showcase-next';
+nextBtn.innerHTML = '&#10095;';
+nextBtn.style.cssText = "position:absolute; top:50%; right:10px; transform:translateY(-50%); font-size:40px; color:white; cursor:pointer; z-index:10;";
+nextBtn.onclick = () => videoShowcasePlusSlides(1);
+videoContainer.appendChild(nextBtn);
+
+let videoSlideIndex = 1;
+showVideoShowcaseSlides(videoSlideIndex);
+
+function videoShowcasePlusSlides(n) {
+  showVideoShowcaseSlides(videoSlideIndex += n);
+}
+
+function showVideoShowcaseSlides(n) {
+  const slides = videoContainer.getElementsByClassName("showcase-slide");
+  if (n > slides.length) videoSlideIndex = 1;
+  if (n < 1) videoSlideIndex = slides.length;
+  Array.from(slides).forEach(s => {
+    const vid = s.querySelector("video");
+    s.style.display = "none";
+    if (vid) vid.pause();
+  });
+  const currentSlide = slides[videoSlideIndex - 1];
+  currentSlide.style.display = "flex";
+}
+
+const videoOverlay = document.getElementById("video-showcase-overlay");
+const zoomedVideo = document.getElementById("video-showcase-zoomed");
+
+videoContainer.addEventListener("click", e => {
+  if (e.target.classList.contains("showcase-video")) {
+    zoomedVideo.src = e.target.src;
+    videoOverlay.style.display = "flex";
+    zoomedVideo.play();
+  }
+});
+
+videoOverlay.addEventListener("click", () => {
+  zoomedVideo.pause();
+  videoOverlay.style.display = "none";
+  zoomedVideo.src = "";
+});
+
+</script>
+</center>
+
 
 <div id="Talk" class="tabcontent">
   <div class="talk-container">
@@ -279,6 +467,7 @@
 
 <div id="Links" class="tabcontent">
   <div class="links-box">
+    <h3>Important Links!</h3>
     <div class="social-grid">
       <div class="social-item discord">
         <a href="https://discord.gg/kndce97FyU" target="_blank">
@@ -340,9 +529,6 @@
 </div>
 
 
-
-
-
 <div id="Help" class="tabcontent">
   <div class="converter-box">
     <h2>Image Converter</h2>
@@ -377,6 +563,22 @@ const downloadLink = document.getElementById('downloadLink');
 const preview = document.getElementById('preview');
 const exportType = document.getElementById('exportType');
 let files = [];
+
+function clearConverter() {
+  files = [];
+  preview.innerHTML = '';
+  downloadLink.style.display = 'none';
+  fileInput.value = '';
+}
+
+// Clear on page reload
+window.addEventListener('beforeunload', clearConverter);
+
+// Clear when switching tabs
+const tabButtons = document.querySelectorAll('.tab button');
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', clearConverter);
+});
 
 fileInput.addEventListener('change', e => {
   files = Array.from(e.target.files);
@@ -492,20 +694,29 @@ convertBtn.addEventListener('click', async () => {
     downloadLink.style.display = 'inline-block';
     downloadLink.textContent = `Download ZIP (${convertedCount} files)`;
   }
+
   convertBtn.disabled = false;
   convertBtn.textContent = 'Convert All';
 });
 
-clearBtn.addEventListener('click', () => {
-  files = [];
-  preview.innerHTML = '';
-  downloadLink.style.display = 'none';
-  fileInput.value = '';
-});
+clearBtn.addEventListener('click', clearConverter);
 </script>
 </body>
-
-</div>
+<div class="converter-box">
+  <div class="favs-container">
+    <div class="favs-card">
+      <a href="https://modrinth.com/collection/4pJebdEG" target="_blank">
+        <img src="./src/assets/socials/modrinth_logo.svg" alt="Modrinth Logo" style="padding-bottom: 10px;">
+        <span>Favorite Mods / Datapacks</span>
+      </a>
+    </div>
+    <div class="favs-card">
+      <a href="https://modrinth.com/collection/1EZMJwe7" target="_blank">
+        <img src="./src/assets/socials/modrinth_logo.svg" alt="Modrinth Logo" style="padding-bottom: 10px;">
+        <span>Favorite Resourcepacks</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script>
