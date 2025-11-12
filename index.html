@@ -83,51 +83,42 @@
       </div>
     </section>
   </div>
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>
 </div>
+
+<div id="latest-video">Loading latest video...</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const CHANNEL_ID = "UCvhwMmPtf0YfL07q_w_uCoA";
-  const API_KEY = "AIzaSyBZxMsgM6OhPAfPYZydlE-x2Ey67XWL7dw"; // <-- Replace with your actual YouTube Data API key
   const latestVideoContainer = document.getElementById("latest-video");
 
-  async function loadLatestVideo() {
-    try {
-      // Fetch the latest video from the channel using YouTube Data API
-      const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&maxResults=1&part=snippet`;
+  // The channel's uploads playlist ID is always "UU" + rest of channel ID after "UC"
+  const uploadsPlaylistId = "UU" + CHANNEL_ID.slice(2);
 
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      if (!data.items || data.items.length === 0) {
-        latestVideoContainer.innerText = "No videos found.";
-        return;
-      }
-
-      const latestVideo = data.items[0];
-      const videoId = latestVideo.id.videoId;
-      const videoTitle = latestVideo.snippet.title;
-
-      latestVideoContainer.innerHTML = `
-        <iframe
-          width="100%"
-          height="515"
-          src="https://www.youtube.com/embed/${videoId}"
-          title="${videoTitle}"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      `;
-    } catch (err) {
-      console.error("Error loading latest video:", err);
-      latestVideoContainer.innerText = "Failed to load video.";
-    }
-  }
-
-  loadLatestVideo();
+  // Embed the first video from the playlist
+  latestVideoContainer.innerHTML = `
+    <iframe
+      width="100%"
+      height="515"
+      src="https://www.youtube.com/embed?listType=playlist&list=${uploadsPlaylistId}&index=1"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  `;
 });
 </script>
+
+
 
 <div id="Mods" class="tabcontent">
   <center>
@@ -263,7 +254,16 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
 
-  </div> <!-- end second row -->
+  </div> 
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>
 
 </div>
 </div>
@@ -290,6 +290,15 @@ document.addEventListener("DOMContentLoaded", () => {
          style="width:110%; height:110%; object-fit:cover; border-radius:8px;"></video>
 </div>
 
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>
 
 </div>
 
@@ -489,6 +498,15 @@ videoOverlay.addEventListener("click", () => {
     </section>
 
   </div>
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>
 </div>
 
 <div id="Links" class="tabcontent">
@@ -551,6 +569,15 @@ videoOverlay.addEventListener("click", () => {
         <span class="text">Ko-fi</span>
       </div>
     </div>
+  </div>
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
   </div>
 </div>
 
@@ -800,6 +827,15 @@ function opentab(evt, tabName) {
 
 
 
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#121212; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>
 
 
 
