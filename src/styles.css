@@ -489,14 +489,15 @@ a:hover,
   word-break: break-word;
 }
 
-.social-item.discord { background: linear-gradient(135deg, #7289DA, #5865F2); }
-.social-item.github { background: linear-gradient(135deg, #6e5494, #333); }
-.social-item.modrinth { background: linear-gradient(135deg, #00ff8090, #00c080); }
-.social-item.youtube { background: linear-gradient(135deg, #ff00008f, #ff0000); }
-.social-item.soundcloud { background: linear-gradient(135deg, #ff5500a9, #ff7700); }
-.social-item.bluesky { background: linear-gradient(135deg, #1da0f2b1, #1a91da); }
-.social-item.twitch { background: linear-gradient(135deg, #9146FF, #772ce8); }
-.social-item.kofi { background: linear-gradient(135deg, #e9dac6, #d1bfa6); }
+.social-item.discord { background-color: #7289DA; }
+.social-item.github { background-color: #6e5494; }
+.social-item.modrinth { background-color: #00ff8090; }
+.social-item.youtube { background-color: #ff00008f; }
+.social-item.soundcloud { background-color: #ff5500a9; }
+.social-item.bluesky { background-color: #1da0f2b1; }
+.social-item.twitch { background-color: #9146FF; }
+.social-item.kofi { background-color: #e9dac6; }
+
 
 @media screen and (max-width: 600px) {
   .social-grid {
