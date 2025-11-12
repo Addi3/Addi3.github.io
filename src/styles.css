@@ -997,8 +997,47 @@ a:hover,
 
 
 
+/* === MOD LINK BARS === */
 
 
+
+.modlink-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 12px;
+  background-color: #15141b;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease; /* smooth grow */
+}
+
+.modlink-box:hover {
+  transform: scale(1.05); /* grow on hover */
+}
+
+.modlink-box a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.modlink-box img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease; /* optional for subtle icon scaling */
+}
+
+.modlink-box:hover img {
+  transform: scale(1.1); /* optional: icon grows slightly on hover */
+}
+
+.text2 {
+  font-size: 14px;
+  color: #fff;
+}
 
 
 
