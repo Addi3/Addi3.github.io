@@ -738,13 +738,13 @@ a:hover,
 }
 
 .favs-card img {
-  max-height: 70px;    /* Adjust this to whatever height you want */
-  width: auto;          /* Let width scale proportionally */
-  height: auto;         /* Maintain aspect ratio */
-  object-fit: contain;  /* Fit inside container without cropping */
+  max-height: 70px;   
+  width: auto;         
+  height: auto;        
+  object-fit: contain;  
   display: block;
   padding-bottom: 10px;
-  margin: 0 auto;       /* Center image horizontally */
+  margin: 0 auto;       
 }
 
 
@@ -960,3 +960,46 @@ a:hover,
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.7);
 }
+
+
+/* === TYPEWRITER === */
+
+
+.line-1 {
+  position: relative;
+  top: 50%;  
+  width: 8ch;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255,255,255,.75); 
+  font-size: 180%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;      
+  transform: translateY(-50%);
+  width: 0; 
+}
+
+.anim-typewriter {
+  animation: 
+    typewriter 2s steps(16, end) 1 forwards 1s, /* more steps, shorter per step */
+    blinkTextCursor 0.5s step-end infinite;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 8ch; } 
+}
+
+@keyframes blinkTextCursor {
+  0%, 100% { border-right-color: rgba(255,255,255,.75); }
+  50% { border-right-color: transparent; }
+}
+
+
+
+
+
+
+
+
+
