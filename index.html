@@ -765,14 +765,29 @@ function opentab(evt, tabName) {
     projects.forEach(p => fetchLatestVersion(p.slug, p.elementId));
   </script>
 
-  <script>
-const repoOwner = 'Addi3'; 
-const repoName = 'addie.github.io';  
+<script>
+const repoUrl = 'https://github.com/Addi3/Addi3.github.io';
 let lastCommitSha = null;
 
+// Define your sound file path relative to your project
+const notificationSound = './src/assets/ding.mp3';
+
+// Extract owner and repo from URL
+const urlParts = repoUrl.replace('https://github.com/', '').split('/');
+const repoOwner = urlParts[0];
+const repoName = urlParts[1];
+
+// Function to play the sound
+function playSound() {
+  const audio = new Audio(notificationSound);
+  audio.play().catch(err => console.warn('Audio play failed:', err));
+}
+
+// Function to show notification
 function showReloadNotification() {
+  playSound(); // play the defined audio file
   const notif = document.createElement('div');
-  notif.textContent = 'Site has been update! Please reload the page.';
+  notif.textContent = 'New commit detected! Please reload the page.';
   notif.style.position = 'fixed';
   notif.style.bottom = '20px';
   notif.style.right = '20px';
@@ -783,8 +798,11 @@ function showReloadNotification() {
   notif.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
   notif.style.zIndex = '9999';
   document.body.appendChild(notif);
+
+  setTimeout(() => notif.remove(), 5000); // remove after 5s
 }
 
+// Check GitHub for new commits
 async function checkForNewCommit() {
   try {
     const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
@@ -792,7 +810,7 @@ async function checkForNewCommit() {
     const latestCommit = commits[0];
 
     if (!lastCommitSha) {
-      lastCommitSha = latestCommit.sha; 
+      lastCommitSha = latestCommit.sha; // initialize
       return;
     }
 
@@ -805,6 +823,26 @@ async function checkForNewCommit() {
   }
 }
 
+// Initial check
 checkForNewCommit();
+// Check every 60 seconds
 setInterval(checkForNewCommit, 60000);
+
+// --- TEST BUTTON ---
+const testBtn = document.createElement('button');
+testBtn.textContent = 'Test Commit Notification';
+testBtn.style.position = 'fixed';
+testBtn.style.bottom = '80px';
+testBtn.style.right = '20px';
+testBtn.style.padding = '10px 15px';
+testBtn.style.border = 'none';
+testBtn.style.borderRadius = '5px';
+testBtn.style.backgroundColor = '#007bff';
+testBtn.style.color = '#fff';
+testBtn.style.cursor = 'pointer';
+testBtn.addEventListener('click', showReloadNotification);
+document.body.appendChild(testBtn);
 </script>
+
+
+
