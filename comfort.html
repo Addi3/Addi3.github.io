@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Mod Series</title>
+     <meta content="Comfort Mod Series" property="og:title"/>
+    <meta content="Comfort Mod Series Website." property="og:description"/>
+    <meta content="https://addi3.github.io/comfort" property="og:url"/>
+    <meta content="https://addi3.github.io/src/assets/misc/avatar.svg" property="og:image"/>
+    <meta content="#F69602" data-react-helmet="true" name="theme-color"/>
+    <link rel="stylesheet" href="./src/comfort_styles.css">
+    <style>
+
+
+</style>
+
+
+</head>
+
+<body>
+    <center>
+
+<div>
+  <img src="./src/assets/comfort/comfort.svg" alt="Avatar" class="namelogo">
+  <div>
+
+</div>
+
+    <h3 style="color:rgb(202, 202, 202)">
+</h3>
+    </center>
+    </body>
+
+<div class="section">    
+
+    <div class="tab">
+        
+  <button class="tablinks" onclick="opentab(event, 'Home')" style="color: rgb(202,202,202)"id="defaultOpen">Home</button>
+  <button class="tablinks" onclick="opentab(event, 'Mods')" style="color: rgb(202,202,202)" >Mods</button>
+  <button class="tablinks" onclick="opentab(event, 'Plan')" style="color: rgb(202,202,202)">Series Plan</button>
+  <button class="tablinks" onclick="opentab(event, 'Issues')" style="color: rgb(202,202,202)">Issues</button>
+</div>
+
+<div id="Home" class="tabcontent">
+  <div class="home-container">
+    <section class="intro">
+      <p>
+        Comfort is a series of mods that aim to add various Furniture / Decor / Food Items and Blocks to Minecraft.
+        <br>
+        <br>
+        Why multiple mods?
+        <br>
+        <br>
+        Well, if this was all under one mod, it would probably be one of the most content-heavy mods in Minecraft.
+        It would also be a massive pain to manage all by myself. Multiple mods also allow people to pick and choose what they want rather than being forced to have hundreds of blocks/items they don’t want.
+        <br>
+        <br>
+        Can I suggest a Mod idea?
+        <br>
+        <br>
+        You can suggest any ideas for mods by clicking <a href="https://github.com/Addi3/Comfort-Series-Page/issues/new?template=feature_request.yml" style="color: rgb(88, 88, 219);">HERE</a> and making a new issue!
+      </p>
+    </section>
+
+  </div>
+</div>
+
+
+
+
+
+
+<div id="Mods" class="tabcontent">
+  <center>
+  <h3>Here you can find all mods in the "Comfort" Series!</h3>
+   <a href="https://addi3.github.io/betas.html" style="color: rgb(131, 189, 243);">Are you a donator and want access to betas, click here to go to them!</a>
+  </center>
+  <hr>
+
+  <div class="row">
+
+    <!-- Mod Name -->
+    <div class="column">
+      <div class="card">
+        <h2 style="color: aliceblue;">Mod Name</h2>
+        <img src="./src/assets/misc/missing.svg" alt="Mod Name" class="avatar">
+        <a style="color:rgb(118, 125, 148)" id="mod-name">VERSION</a>
+        <p class="text">Mod Description</p>
+
+        <div class="modlink-box">
+          <a href="">
+            <img src="./src/assets/socials/modrinth_logo.svg" class="grow" alt="Modrinth">
+            <span class="text2">Modrinth</span>
+          </a>
+        </div>
+
+        <div class="modlink-box">
+          <a href="">
+            <img src="./src/assets/socials/curseforge_logo.svg" alt="Curseforge">
+            <span class="text2">Curseforge</span>
+          </a>
+        </div>
+
+        <div class="modlink-box">
+          <a href="">
+            <img src="./src/assets/socials/github_logo.svg" alt="Github">
+            <span class="text2">Github</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div> <!-- end first row -->
+
+
+</div>
+</div>
+
+
+
+
+<div id="Plan" class="tabcontent">
+  <div class="talk-container">
+    <section class="talk-section">
+      <center>
+      <h3>This is where You'll find what I have planned the series!</h3>
+      <a>Each thing listed here will be its own "Sub" Mod and made in no specific order!</a>
+      </center>
+      <hr class="divider">
+      <ul>
+  <li><strong>Art Deco</strong></li>
+  <br>
+  <li><strong>Modern / Futuristic</strong></li>
+  <br>
+  <li><strong>Retro Futuristic</strong></li>
+  <br>
+  <li><strong>Let’s Eat</strong> (all food)</li>
+  <br>
+  <li><strong>Express</strong> (train stuff)</li>
+  <br>
+  <li><strong>Adorn</strong> (Old English / medieval)</li>
+  <br>
+  <li><strong>Industrial</strong> (factories, industry)</li>
+  <br>
+  <li><strong>Gilded Age</strong> (Victorian era)</li>
+  <br>
+</ul>
+
+    </section>
+
+  </div>
+</div>
+
+
+
+
+
+
+<div id="Issues" class="tabcontent">
+<div class="talk-container" id="issues">
+<!-- GitHub issues will load here -->
+</div>
+</div>
+</div>
+
+
+
+<script>
+async function loadIssues() {
+const url = "https://api.github.com/repos/Addi3/Comfort-Series-Page/issues?state=open";
+const issuesContainer = document.getElementById("issues");
+issuesContainer.innerHTML = "";
+
+
+try {
+const response = await fetch(url);
+if (!response.ok) throw new Error("Repo not found or request failed");
+
+
+const issues = await response.json();
+if (issues.length === 0) {
+issuesContainer.innerHTML = "<p>No open issues found.</p>";
+return;
+}
+
+
+issues.forEach(issue => {
+if (issue.state !== 'open') return;
+
+
+const div = document.createElement("div");
+div.className = "issue";
+div.innerHTML = `
+<div class="issue-title">
+<a href="${issue.html_url}" target="_blank">${issue.title}</a>
+</div>
+<div class="issue-meta">#${issue.number} opened by ${issue.user.login}</div>
+`;
+issuesContainer.appendChild(div);
+});
+
+
+} catch (err) {
+issuesContainer.innerHTML = `<p>Error: ${err.message}</p>`;
+}
+}
+
+
+loadIssues();
+</script>
+
+<script>
+function opentab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  document.getElementById("defaultOpen").click();
+
+</script>
+
+ <script>
+    const projects = [
+      { slug: "mod-name", elementId: "mod-name-id-in-link" }
+    ];
+
+    async function fetchLatestVersion(slug, elementId) {
+      const element = document.getElementById(elementId);
+
+      try {
+        const response = await fetch(`https://api.modrinth.com/v2/project/${slug}/version`);
+        const versions = await response.json();
+
+        if (!versions.length) {
+          element.innerHTML = `<strong>${slug}</strong>: No versions found.`;
+          return;
+        }
+
+        const latest = versions[0];
+
+        element.innerHTML = `
+          <strong>Latest Version:</strong> ${latest.version_number}<br>
+          <strong>Game Versions:</strong> ${latest.game_versions.join(", ")}<br>
+        `;
+      } catch (error) {
+        element.innerHTML = `<strong>${slug}</strong>: Error fetching version info.`;
+        console.error(`Error fetching ${slug}:`, error);
+      }
+    }
+
+    // Fetch each mod’s version info separately
+    projects.forEach(p => fetchLatestVersion(p.slug, p.elementId));
+  </script>
+</div>
+
+
+
+
+  <div>
+    <footer style="text-align:center; padding:1rem; background-color:#1b1b24; color:#ccc; font-size:0.9rem;">
+    &copy; <span id="currentYear"></span> Addie's Site. All rights reserved.
+</footer>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+  </div>

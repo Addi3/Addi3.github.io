@@ -1,0 +1,309 @@
+/* === GLOBAL LAYOUT & THEME === */
+body {
+  background-repeat: inherit;
+  background-attachment: scroll;
+  background-size: 120rem;
+  background-position-y: -10rem;
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: 3rem;
+  background-color: #2b2e3b;
+  color: aliceblue;
+}
+
+h1, h2, h3, h4 {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* === GROW EFFECT === */
+.grow {
+  transition: transform 0.2s;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.grow:hover {
+  transform: scale(1.15);
+  border-radius: 40%;
+}
+
+/* === TABS === */
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 8px;
+  background-color: var(--tab-bg);
+  overflow: hidden;
+  border: none;
+}
+
+.tab button {
+  background-color: #1b1b24;
+  font-family: system-ui;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 22px;
+  font-size: 1.05rem;
+  transition: background-color 180ms ease, color 180ms ease;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+
+.tab button:hover {
+  background-color: #333a46;
+  color: aliceblue;
+}
+
+.tab button.active {
+  background-color: #3e4552;
+  color: aliceblue;
+}
+
+.tab, .tab button, .tab button:hover, .tab button.active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.tabcontent {
+  border: none !important;
+  background-clip: padding-box;
+}
+
+/* === FADE EFFECT === */
+@keyframes fadeEffect {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === TEXT ELEMENTS === */
+.text {
+  display: inline-block;
+  vertical-align: top;
+  font-family: system-ui;
+  color: aliceblue;
+}
+
+.text2 {
+  font-size: 15px;
+  padding-left: 10px;
+  color: #ffffff;
+  text-decoration: none !important;
+  text-decoration-skip-ink: none !important;
+}
+
+.text2:hover {
+  color: #d8d8e2a9;
+  text-decoration: none !important;
+}
+
+/* === SECTION BLOCKS === */
+.section {
+  list-style-type: none;
+  background-color: #1e202a;
+  margin: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 50px;
+  overflow: hidden;
+}
+
+
+/* === AVATAR === */
+.avatar {
+  vertical-align: middle;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 30%;
+}
+
+.namelogo {
+  vertical-align: middle;
+  align-items: center;
+}
+
+
+/* === CARD GRID === */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  align-items: stretch;
+}
+
+.column {
+  padding-left: 40px;
+  flex: 0 0 30%;
+  max-width: 30%;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #1b1b24;
+  border-radius: 5%;
+  width: 90%;
+  max-width: 500px;
+  min-width: 250px;
+  height: auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-wrap: break-word;   /* fixed issue */
+  word-break: break-word;
+  overflow: hidden;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5%;
+}
+
+.card h2, .card p, .card span {
+  margin: 0.5rem 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+
+/* === LINKS === */
+a,
+a:visited,
+.link,
+.card a {
+  color: #ffffff;
+  text-decoration: none !important;
+  text-decoration-skip-ink: none !important;
+}
+
+
+.meta {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(231, 233, 255, 0.78);
+  margin-top: 6px;
+}
+
+.container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Container for the talk tab */
+.talk-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1e202a;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: aliceblue;
+  font-family: system-ui;
+  line-height: 1.6;
+}
+
+
+/* Container for the Home tab */
+.home-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1b1b24;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: aliceblue;
+  font-family: system-ui;
+  line-height: 1.6;
+}
+
+/* Intro text */
+.intro p {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* === MOD LINK BARS === */
+.modlink-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 12px;
+  background-color: #15141b;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease; /* smooth grow */
+}
+
+.modlink-box:hover {
+  transform: scale(1.05); /* grow on hover */
+}
+
+.modlink-box a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.modlink-box img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease; /* optional for subtle icon scaling */
+}
+
+.modlink-box:hover img {
+  transform: scale(1.1); /* optional: icon grows slightly on hover */
+}
+
+.text2 {
+  font-size: 14px;
+  color: #fff;
+}
+
+
+
+
+/* === REPO ISSUES === */
+#issues { margin-top: 20px; }
+.issue {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 6px;
+margin-bottom: 15px; 
+}
+.issue-title { font-size: 1.1em; font-weight: bold; }
+.issue-meta { font-size: 0.9em; color: #555; margin-top: 4px; }
