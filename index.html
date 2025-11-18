@@ -30,7 +30,7 @@
 
 
 <div>
-  <img src="./src/assets/misc/avatar.svg" alt="Avatar" class="image">
+  <img id="seasonalImage" src="" alt="Avatar" class="image">
   <div>
 
 </div>
@@ -105,6 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
+<script>
+  const month = new Date().getMonth();  
+  const img = document.getElementById("seasonalImage");
+
+  const octoberTexture  = "./src/assets/misc/avatar_halloween.svg"; 
+  const holidayTexture  = "./src/assets/misc/avatar_xmas.svg"; 
+  const normalTexture   = "./src/assets/misc/avatar.svg";   
+
+  if (month === 9) {
+      img.src = octoberTexture;
+  } 
+  else if (month === 10 || month === 11) {
+     
+      img.src = holidayTexture;
+  } 
+  else {
+      img.src = normalTexture;
+  }
+</script>
 
 
 
