@@ -1,0 +1,108 @@
+body {
+  background-repeat: inherit;
+  background-attachment: scroll;
+  background-size: 120rem;
+  background-position-y: -10rem;
+  font-family: system-ui;
+  margin: 3rem;
+  background-color: #131313;
+  box-sizing: border-box;
+}
+
+/* Sidebar menu */
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px;
+  padding: 10px;
+  max-width: calc(100% - 160px);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content:target {
+  display: block;
+}
+
+.tab-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sidenav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+mark {
+  background-color: rgb(117, 117, 117);
+  color: black;
+}
+
+.info-box {
+  background-color: #0f0f11;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: fit-content;
+  max-width: 95%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: system-ui;
+}
+
+.important-info-box {
+  background-color: #2e2e33;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: fit-content;
+  max-width: 95%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: system-ui;
+}
+
+.imgs {
+  border-radius: 3%;
+}
