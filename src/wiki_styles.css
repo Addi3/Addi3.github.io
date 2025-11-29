@@ -44,6 +44,14 @@ body {
   display: none;
 }
 
+.default-tab {
+  display: block;
+}
+
+body:has(:target) .default-tab {
+  display: none;
+}
+
 .tab-content:target {
   display: block;
 }
