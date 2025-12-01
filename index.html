@@ -230,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="text2">Github</span>
           </a>
         </div>
-
       </div>
     </div>
 
@@ -255,6 +254,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
        <div class="modlink-box">
         <a href="https://github.com/Addi3/toasted">
+          <img src="./src/assets/socials/github_logo.svg" alt="Github">
+          <span class="text2">Github</span>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <!-- jumpsquared -->
+    <div class="column">
+      <div class="card">
+        <h2 style="color: aliceblue;">Jump²</h2>
+        <img src="./src/assets/mods/jump_squared.svg" alt="Jumpsquared" class="avatar">
+        <a style="color:rgb(118, 125, 148)" id="jumpsquared">VERSION</a>
+        <p class="text">Allows the player to double jump, similar to old arcade style video games!</p>
+
+        <div class="modlink-box">
+          <a href="https://modrinth.com/mod/jumpsquared">
+            <img src="./src/assets/socials/modrinth_logo.svg"alt="Modrinth">
+            <span class="text2">Modrinth</span>
+          </a>
+        </div>
+
+        <div class="modlink-box">
+          <a href="https://www.curseforge.com/minecraft/mc-mods/jump2">
+            <img src="./src/assets/socials/curseforge_logo.svg" alt="Curseforge">
+            <span class="text2">Curseforge</span>
+          </a>
+        </div>
+
+       <div class="modlink-box">
+        <a href="https://github.com/Addi3/JumpSquared/">
           <img src="./src/assets/socials/github_logo.svg" alt="Github">
           <span class="text2">Github</span>
         </a>
@@ -844,7 +874,8 @@ function opentab(evt, tabName) {
       { slug: "ait-extras", elementId: "ait-extras" },
       { slug: "ait", elementId: "ait" },
       { slug: "amble-stargate", elementId: "amble-stargate" },
-      { slug: "toasted", elementId: "toasted" }
+      { slug: "toasted", elementId: "toasted" },
+      { slug: "jumpsquared", elementId: "jumpsquared" }
     ];
 
     async function fetchLatestVersion(slug, elementId) {
@@ -871,7 +902,6 @@ function opentab(evt, tabName) {
       }
     }
 
-    // Fetch each mod’s version info separately
     projects.forEach(p => fetchLatestVersion(p.slug, p.elementId));
   </script>
 </div>
