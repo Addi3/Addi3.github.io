@@ -19,6 +19,42 @@
 <div class="sidenav">
   <a style="color: aliceblue;">Jump² Wiki</a>
   <hr class="divider">
+
+   <input 
+    type="text" 
+    id="wikiSearch" 
+    placeholder="Search..." 
+    onkeyup="searchWiki()" 
+    style="width: 90%; padding: 5px; margin-bottom: 10px; border-radius: 5px; border: none;"
+  >
+
+  <script>
+function searchWiki() {
+  const input = document.getElementById('wikiSearch').value.toLowerCase();
+  const sections = document.querySelectorAll('.tab-content');
+
+  sections.forEach(section => {
+    const html = section.innerHTML;
+    // Remove any previous highlights
+    section.innerHTML = html.replace(/<mark class="highlight">([^<]+)<\/mark>/gi, '$1');
+
+    if (input === "") {
+      section.style.display = 'block';
+    } else {
+      const text = section.innerText.toLowerCase();
+      if (text.includes(input)) {
+        section.style.display = 'block';
+        
+        // Highlight all matches
+        const regex = new RegExp(`(${input})`, 'gi');
+        section.innerHTML = section.innerHTML.replace(regex, '<mark class="highlight">$1</mark>');
+      } else {
+        section.style.display = 'none';
+      }
+    }
+  });
+}
+</script>
   
   <br>
   <a href="#mechanics">Mechanics</a>
@@ -45,7 +81,7 @@
     <br>
     <div class="info-box">
       <h2 style="color: aliceblue;">New Bars:</h2>
-      <img class="imgs" src="./src/assets/wikis/jumpsquared/bars.png" alt="bars">
+      <img class="imgs" src="./src/assets/wikis/jumpsquared/bars.svg" alt="bars">
       <p style="color: aliceblue;">In the image above, you can see the 2 new bars that the mod adds.</p>
     </div>
     <br>
@@ -57,6 +93,8 @@
       <h3 style="color: aliceblue;">Gold Bar:</h3>
       <p style="color: aliceblue;">The gold bar indicates the boost jump charge, this bar will always be black until you hold the <mark style="color: aliceblue;">"sneak"</mark> keybind.</p>
       <p style="color: aliceblue;">This will slowly fill the bar. When it is fully gold colored, you can then press the <mark style="color: aliceblue;">"sneak"</mark> keybind again and you will launch into the air.</p>
+      <br>
+      <p>You can disable and enable both with <mark style="color: aliceblue;">"G"</mark> (by default). It will also be ON be default!</p>
     </div>
     <br>
     <div class="important-info-box">
@@ -68,7 +106,7 @@
     <div class="info-box">
       <h1 style="color: aliceblue;">Q&A</h1>
       <p style="color: aliceblue;">I will try to answer as many questions as I can.</p>
-      <p style="color: aliceblue;">If you have a question that isn't here, you can also ask on the <a href="https://github.com/Addi3/JumpSquared/issues">GitHub page</a>.</p>
+      <p style="color: aliceblue;">If you have a question that isn't here, you can also ask on the <a style="color: rgb(60, 164, 255);"class=text2 href="https://github.com/Addi3/JumpSquared/issues">GitHub page</a> .</p>
     </div>
     <br>
     <div class="info-box">
@@ -76,13 +114,16 @@
       <p style="color: aliceblue;">- This mod allows you to double jump and boost jump, increasing the jump height to 5+ blocks.</p>
       <br>
       <h3 style="color: aliceblue;">Q: Will this mod be ported to Forge or NeoForge?</h3>
-      <p style="color: aliceblue;">- Nope. I just don't have the time to maintain multiple mod versions. You can look at the `DEV TALK` page <a href="https://addi3.github.io/">here</a> for a detailed answer.</p>
+      <p style="color: aliceblue;">- Nope. I just don't have the time to maintain multiple mod versions. You can look at the `DEV TALK` page <a style="color: rgb(60, 164, 255);"class=text2 href="https://addi3.github.io/">here</a> for a detailed answer.</p>
       <br>
       <h3 style="color: aliceblue;">Q: How do I get access to betas?</h3>
-      <p style="color: aliceblue;">- You can access betas via my <a href="https://ko-fi.com/addi3dabaddie">Ko-fi page</a>.</p>
+      <p style="color: aliceblue;">- You can access betas via my <a style="color: rgb(60, 164, 255);"class=text2 href="https://ko-fi.com/addi3dabaddie">Ko-fi page</a>.</p>
       <br>
       <h3 style="color: aliceblue;">Q: Can you add... / How do you use...?</h3>
       <p style="color: aliceblue;">- You can suggest stuff on the GitHub issues page. I will try to answer any questions!</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: Can I toggle it on and off?</h3>
+      <p style="color: aliceblue;">- You can, with <mark style="color: aliceblue;">"G"</mark> by default (you can change that)</p>
     </div> 
   </div>
 </div>
