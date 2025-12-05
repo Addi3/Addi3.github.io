@@ -320,22 +320,161 @@ document.addEventListener("DOMContentLoaded", () => {
          style="width:110%; height:110%; object-fit:cover; border-radius:8px;"></video>
 </div>
 
+
+</center>
 </div>
 
 <div id="projects" class="tabcontent">
-  <div class="talk-container">
+  <center>
+    <h3>Public Projects</h3>
+    <hr width="100%" color="#707070" size="2">
 
+    <div class="talk-container project-segment"
+         style="max-width:1100px; margin-top:30px; padding:25px; border-radius:12px; background:rgba(255,255,255,0.05);">
 
-    <hr class="divider">
+      <h2 class="project-title"></h2>
 
-    <section class="talk-section">
-      <h3>COMING SOON!</h3>
-    </section>
+      <div class="project-showcase-container"
+           style="position:relative; width:100%; height:70vh; max-height:750px;
+                  display:flex; justify-content:center; align-items:center;
+                  overflow:hidden; border-radius:10px; background:#111;">
+      </div>
 
-    
+      <button class="projectDownloadBtn"
+              style="margin-top:18px; padding:10px 20px; background:#4a83ff; color:white;
+                     border:none; border-radius:6px; cursor:pointer; font-size:1rem;">
+        Download Worldedit .schem
+      </button>
 
-  </div>
+      <p class="project-desc"
+         style="font-size:0.95rem; color:#ccc; margin-top:15px; max-width:850px; text-align:center;">
+      </p>
+      
+      <ul class="project-features"
+          style="margin-top:12px; font-size:0.9rem; color:#ccc; max-width:850px; text-align:left; padding-left:20px;">
+      </ul>
+
+    </div>
+  </center>
 </div>
+
+
+
+<script>
+const projectData = [
+  {
+    title: "l'Aurore Boréale",
+    images: ["vortex.svg", "loco.svg","library.svg","bar.svg","single_rooms.svg",
+    "single_room.svg","master_room.svg","first_class.svg","first_class_alt.svg",
+  "corridor.svg","storage.svg","exterior_no_vortex.svg"],
+    download: "./src/assets/publicdownloads/train/lAurore_Boreale.schem",
+    description: "This is a build I made on the ait server as my TARDIS interior. It will require the following mods!",
+    features: [
+      "[let's do] vinery 1.4.41",
+      "[let's do] brewery 2.0.6",
+      "[let's do] furniture 1.0.4",
+      "create: copy cats+ 2.2.2+mc",
+      "create: deco 2.0,2",
+      "create: steam n' rails 1.6.14-beta",
+      "chipped: 3.0.7",
+      "adventures in time (if you want it to fly in the vortex) latest release"
+    ]
+  }
+];
+
+document.querySelectorAll(".project-segment").forEach((segment, index) => {
+  const data = projectData[index];
+  if (!data) return;
+
+  segment.querySelector(".project-title").textContent = data.title;
+  segment.querySelector(".project-desc").textContent = data.description;
+
+  const featureList = segment.querySelector(".project-features");
+  featureList.innerHTML = "";
+  data.features.forEach(f => {
+    const li = document.createElement("li");
+    li.textContent = f;
+    featureList.appendChild(li);
+  });
+
+  const container = segment.querySelector(".project-showcase-container");
+  const dlBtn = segment.querySelector(".projectDownloadBtn");
+
+  const fragment = document.createDocumentFragment();
+  data.images.forEach(file => {
+    const slide = document.createElement("div");
+    slide.className = "showcase-slide";
+    slide.style.cssText = `
+      display:none;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+      height:100%;
+    `;
+
+    const img = document.createElement("img");
+    img.src = `./src/assets/publicdownloads/train/imgs/${file}`;
+    img.style.cssText = `
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      border-radius:10px;
+    `;
+
+    slide.appendChild(img);
+    fragment.appendChild(slide);
+  });
+
+  container.appendChild(fragment);
+
+  const prev = document.createElement("div");
+  prev.innerHTML = "&#10094;";
+  prev.style.cssText = `
+    position:absolute; left:10px; top:50%; transform:translateY(-50%);
+    font-size:45px; color:white; cursor:pointer; user-select:none;
+  `;
+  container.appendChild(prev);
+
+  const next = document.createElement("div");
+  next.innerHTML = "&#10095;";
+  next.style.cssText = `
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-size:45px; color:white; cursor:pointer; user-select:none;
+  `;
+  container.appendChild(next);
+
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+    const slides = container.getElementsByClassName("showcase-slide");
+    if (slides.length === 0) return;
+
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+
+    Array.from(slides).forEach(s => s.style.display = "none");
+    slides[slideIndex - 1].style.display = "flex";
+  }
+
+  prev.onclick = () => showSlides(slideIndex -= 1);
+  next.onclick = () => showSlides(slideIndex += 1);
+
+  dlBtn.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = data.download;
+    a.download = data.download.split("/").pop();
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+});
+</script>
+
+
+
+
 
 
 <script>
@@ -497,8 +636,6 @@ videoOverlay.addEventListener("click", () => {
 });
 
 </script>
-</center>
-
 
 <div id="Talk" class="tabcontent">
   <div class="talk-container">
