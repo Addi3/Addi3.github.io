@@ -19,50 +19,22 @@
 <div class="sidenav">
   <a style="color: aliceblue;">Jump² Wiki</a>
   <hr class="divider">
-
-   <input 
-    type="text" 
-    id="wikiSearch" 
-    placeholder="Search..." 
-    onkeyup="searchWiki()" 
-    style="width: 90%; padding: 5px; margin-bottom: 10px; border-radius: 5px; border: none;"
-  >
-
-  <script>
-function searchWiki() {
-  const input = document.getElementById('wikiSearch').value.toLowerCase();
-  const sections = document.querySelectorAll('.tab-content');
-
-  sections.forEach(section => {
-    const html = section.innerHTML;
-    // Remove any previous highlights
-    section.innerHTML = html.replace(/<mark class="highlight">([^<]+)<\/mark>/gi, '$1');
-
-    if (input === "") {
-      section.style.display = 'block';
-    } else {
-      const text = section.innerText.toLowerCase();
-      if (text.includes(input)) {
-        section.style.display = 'block';
-        
-        // Highlight all matches
-        const regex = new RegExp(`(${input})`, 'gi');
-        section.innerHTML = section.innerHTML.replace(regex, '<mark class="highlight">$1</mark>');
-      } else {
-        section.style.display = 'none';
-      }
-    }
-  });
-}
-</script>
-  
   <br>
   <a href="#mechanics">Mechanics</a>
   <br>
   <a href="#qna">Q&A</a>
 </div>
 
+
+
 <div class="main">
+
+     <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search  Page...">
+      <div class="search-results" id="search-results">
+        <ul></ul>
+      </div>
+    </div>
 
   <div id="default" class="tab-content default-tab">
     <div class="info-box">
@@ -128,7 +100,126 @@ function searchWiki() {
   </div>
 </div>
 
+<script>
+// === Tab Switching Functionality ===
+const sidebarLinks = document.querySelectorAll('.sidenav a[href^="#"]');
+const tabs = document.querySelectorAll('.tab-content');
 
+// Show a tab by ID
+function showTab(tabId) {
+  tabs.forEach(tab => tab.style.display = 'none');
+  const tab = document.getElementById(tabId);
+  if (tab) {
+    tab.style.display = 'block';
+  }
+}
+
+// If URL has a hash (#something), open that tab
+function loadTabFromHash() {
+  const hash = window.location.hash.substring(1);
+
+  if (hash && document.getElementById(hash)) {
+    showTab(hash);
+  } else {
+    showTab('default'); // fallback
+  }
+}
+
+loadTabFromHash(); // run on page load
+
+// Listen for sidebar clicks
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tabId = link.getAttribute('href').substring(1);
+
+    // Update URL hash without scrolling to top
+    history.pushState(null, "", "#" + tabId);
+
+    showTab(tabId);
+  });
+});
+
+// Detect manual URL hash changes (user edits URL or presses back/forward)
+window.addEventListener("hashchange", loadTabFromHash);
+
+
+// === Search Functionality ===
+const searchBar = document.getElementById('search-bar');
+const resultContainer = document.getElementById('search-results');
+const resultList = resultContainer.querySelector('ul');
+
+searchBar.addEventListener('input', () => searchContent());
+
+function searchContent() {
+  const query = searchBar.value.toLowerCase().trim();
+  resultList.innerHTML = '';
+
+  if (!query) {
+    resultContainer.style.display = 'none';
+    return;
+  }
+
+  resultContainer.style.display = 'block';
+  const results = [];
+
+  tabs.forEach(tab => {
+    const elements = tab.querySelectorAll('h1, h2, h3, p');
+    elements.forEach(el => {
+      if (el.textContent.toLowerCase().includes(query)) {
+        if (!el.id) el.id = 'search-' + Math.random().toString(36).substring(2, 9);
+        results.push({ title: el.textContent, id: el.id, tab: tab, element: el });
+      }
+    });
+  });
+
+  if (results.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'No results found';
+    li.classList.add('no-results');
+    resultList.appendChild(li);
+    return;
+  }
+
+  results.forEach(result => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = result.title;
+    a.href = '#' + result.id;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      scrollToText(result);
+    });
+    li.appendChild(a);
+    resultList.appendChild(li);
+  });
+}
+
+function scrollToText(result) {
+  const el = result.element;
+  if (!el) return;
+
+  // Switch to correct tab
+  showTab(result.tab.id);
+
+  // Update URL hash
+  history.pushState(null, "", "#" + result.tab.id);
+
+  searchBar.value = '';
+  resultContainer.style.display = 'none';
+  resultList.innerHTML = '';
+
+  setTimeout(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.style.backgroundColor = '#535358';
+    setTimeout(() => { el.style.backgroundColor = ''; }, 1000);
+  }, 50);
+}
+</script>
+
+
+
+</body>
 <style>
  
 </style>

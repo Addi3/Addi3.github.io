@@ -4,9 +4,9 @@
 <head>
  <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jump Squared Wiki</title>
-     <meta content="Jump Squared Wiki" property="og:title"/>
-    <meta content="Jump Squared Wiki Official Site." property="og:description"/>
+    <title>Smored Wiki</title>
+     <meta content="Smored Wiki" property="og:title"/>
+    <meta content="Smored Wiki Official Site." property="og:description"/>
     <meta content="https://addi3.github.io" property="og:url"/>
     <meta content="https://addi3.github.io/src/assets/misc/avatar.svg" property="og:image"/>
     <meta content="#F69602" data-react-helmet="true" name="theme-color"/>
@@ -15,103 +15,164 @@
 
 <body>
 
-<!-- Side navigation -->
-<div class="sidenav">
-  <a style="color: aliceblue;">Jump² Wiki</a>
+  <div class="sidenav">
+  <a style="color: aliceblue;">Smore'd Wiki</a>
   <hr class="divider">
-
-   <input 
-    type="text" 
-    id="wikiSearch" 
-    placeholder="Search..." 
-    onkeyup="searchWiki()" 
-    style="width: 90%; padding: 5px; margin-bottom: 10px; border-radius: 5px; border: none;"
-  >
-
-  <script>
-function searchWiki() {
-  const input = document.getElementById('wikiSearch').value.toLowerCase();
-  const sections = document.querySelectorAll('.tab-content');
-
-  sections.forEach(section => {
-    const html = section.innerHTML;
-    // Remove any previous highlights
-    section.innerHTML = html.replace(/<mark class="highlight">([^<]+)<\/mark>/gi, '$1');
-
-    if (input === "") {
-      section.style.display = 'block';
-    } else {
-      const text = section.innerText.toLowerCase();
-      if (text.includes(input)) {
-        section.style.display = 'block';
-        
-        // Highlight all matches
-        const regex = new RegExp(`(${input})`, 'gi');
-        section.innerHTML = section.innerHTML.replace(regex, '<mark class="highlight">$1</mark>');
-      } else {
-        section.style.display = 'none';
-      }
-    }
-  });
-}
-</script>
-  
   <br>
-  <a href="#mechanics">Mechanics</a>
-  <br>
-  <a href="#qna">Q&A</a>
-</div>
+    <a href="#blockitems">Blocks / Items</a>
+<br>
+    <a href="#recipes">Recipes</a>
+<br>
+    <a href="#qna">Q&A</a>
+  </div>
 
-<div class="main">
+  <div class="main">
 
-  <div id="default" class="tab-content default-tab">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search">
+      <div class="search-results" id="search-results">
+        <ul></ul>
+      </div>
+    </div>
+
+    <!-- Default Tab -->
+ <div id="default" class="tab-content default-tab">
     <div class="info-box">
-      <h1 style="color: aliceblue;">Welcome to the Jump² Wiki</h1>
+      <h1 style="color: aliceblue;">Welcome to the Smore'd Wiki</h1>
       <p style="color: aliceblue;">Select a topic from the sidebar to get started!</p>
       <p style="color: aliceblue;">You can learn about the mechanics in the mod, and see the Q&A here.</p>
     </div>
   </div>
 
-  <div id="mechanics" class="tab-content">
-    <div class="info-box">
-      <h1 style="color: aliceblue;">Mechanics</h1>
-      <p style="color: aliceblue;">The mechanics in this mod are fairly simple as it mostly consists of old arcade</p>
-      <p style="color: aliceblue;">style double jump and jump boost mechanics!</p>
-    </div>
+    <!-- Blocks / Items -->
+    <div id="blockitems" class="tab-content">
+      <div class="info-box">
+        <h2>Blocks / Items</h2>
+        <p>Here you can see everything you need to know on the blocks and items in this mod!</p>
+      </div>
     <br>
-    <div class="info-box">
-      <h2 style="color: aliceblue;">New Bars:</h2>
-      <img class="imgs" src="./src/assets/wikis/jumpsquared/bars.svg" alt="bars">
-      <p style="color: aliceblue;">In the image above, you can see the 2 new bars that the mod adds.</p>
-    </div>
-    <br>
-    <div class="info-box">
-      <h3 style="color: aliceblue;">Blue Bar:</h3>
-      <p style="color: aliceblue;">The blue bar indicates the double jump cooldown. When double jumping, the bar will change to black.</p>
-      <p style="color: aliceblue;">Meaning that you can't double jump again until the bar is full (this cooldown is about 4 seconds).</p>
+      <div class="info-box">
+        <b>
+        <h2>Items:</h2>
+        </b>
+      </div>
       <br>
-      <h3 style="color: aliceblue;">Gold Bar:</h3>
-      <p style="color: aliceblue;">The gold bar indicates the boost jump charge, this bar will always be black until you hold the <mark style="color: aliceblue;">"sneak"</mark> keybind.</p>
-      <p style="color: aliceblue;">This will slowly fill the bar. When it is fully gold colored, you can then press the <mark style="color: aliceblue;">"sneak"</mark> keybind again and you will launch into the air.</p>
-      <br>
-      <p>You can disable and enable both with <mark style="color: aliceblue;">"G"</mark> (by default). It will also be ON be default!</p>
-    </div>
+      <div class="info-box">
+        <h3 id="new-heading">Marshmallows</h3>
+        <img class="imgs-big" src="./src/assets/wikis/smored/marshmallows.svg" alt="img">
+        <p>In the image above, you can see the different stages of marshmallow you can get in the mod.</p>
+        <p>Only the Uncooked on can be crafted, the other are obtained via the new "roasting" mechanic.</p>
+        <p>They also give special effects depending on what one you eat!</p>
     <br>
-    <div class="important-info-box">
-      <h3 style="color: aliceblue;">Both of the bars will consume hunger over time, you will also take damage from both so be cautious when using them!</h3>
+        <p>This consists of (from left to right):</p>
+        <li>Uncooked</li>
+    <br>
+        <li>Lightly Roasted</li>
+    <br>
+        <li>Perfectly Roasted</li>
+    <br>
+        <li>Burnt</li>
+      </div>
+    <br>
+      <div class="info-box">
+        <h3 id="new-heading">Marshmallow Sticks</h3>
+        <img class="imgs" src="./src/assets/wikis/smored/stick_marshmallow.svg" alt="img">
+        <p>This is what you can use to "roast" marshmallows over campfires (each stage takes about 6 seconds).</p>
+        <br>
+        <p>You can put it "over" the campfire by looking at the block, and holding <mark style="color: aliceblue;">"Right-click"</mark> !</p>
+        <p>Once you have roasted it to you desired stage, you can take it off the stick by pressing <mark style="color: aliceblue;">"Crouch + Right-click"</mark> !</p>
+      </div>
+    <br>
+      <div class="info-box">
+        <h3 id="new-heading">Crackers</h3>
+        <img class="imgs" src="./src/assets/wikis/smored/cracker.svg" alt="img">
+        <p>This is only used to make smores, but can also be eaten.</p>
+      </div>
+    <br>
+      <div class="info-box">
+        <h3 id="new-heading">Smores</h3>
+        <img class="imgs" src="./src/assets/wikis/smored/smores.svg" alt="img">
+        <p>This is what you can use marshmallows for.</p>
+        <p>You can make one for each stage of marshmallow roastedness. They also give special effects depending on what one you eat!</p>
+      </div>
+    <br>
+      <div class="info-box">
+        <b>
+        <h2>Blocks:</h2>
+        </b>
+      </div>
+    <br>  
+      <div class="info-box">
+        <h3 id="new-heading">Copper Campfire</h3>
+        <img class="imgs" src="./src/assets/wikis/smored/copper_campfire.svg" alt="img">
+        <p>This is a new type of campfire, it doesnt emmit smoke and roasts marshmallows</p>
+        <p>at half the speed a normal campfire does (so about 3 seconds rather than the normal 6).</p>
+      </div>
+    <br>
+      <div class="info-box">
+        <h3 id="new-heading">Jars</h3>
+        <img class="imgs-big" src="./src/assets/wikis/smored/jars.svg" alt="img">
+        <p>This is a block that can be use to store (up to) 16 Marshmallows of each type.</p>
+        <p>You can put marshmallows in it by holding one and pressing <mark style="color: aliceblue;">"Right-click"</mark></p>
+        <p>on a jar and to take one out just click on it with an empty hand.</p>
+        <br>
+        <p>You can also use it to put marshmallows on sticks by holding a stick and pressing <mark style="color: aliceblue;">"Right-click"</mark> on a jar.</p>
+      </div>
     </div>
-  </div>
 
-  <div id="qna" class="tab-content">
-    <div class="info-box">
-      <h1 style="color: aliceblue;">Q&A</h1>
-      <p style="color: aliceblue;">I will try to answer as many questions as I can.</p>
-      <p style="color: aliceblue;">If you have a question that isn't here, you can also ask on the <a style="color: rgb(60, 164, 255);"class=text2 href="https://github.com/Addi3/JumpSquared/issues">GitHub page</a> .</p>
+    <!-- Recipes -->
+    <div id="recipes" class="tab-content">
+      <div class="info-box">
+        <h2>Recipes</h2>
+        <p>Here you can see everything you can craft in this mod!</p>
+      </div>
+      <br>
+      <div id="recipebox">  
+         <div class="info-box">
+        <h3 id="copper-campfire">Copper Campfire:</h3>
+        <p>Can use any Log block.</p>
+        <img class="imgs" src="./src/assets/wikis/smored/campfire_recipe.svg" alt="img">
+      </div>
+      <div class="info-box">
+        <h3 id="marshmallow">Marshmallow:</h3>
+        <p style="color:#0f0f11">\</p>
+        <img class="imgs" src="./src/assets/wikis/smored/mallow_recipe.svg" alt="img">
+      </div>
+      <div class="info-box">
+        <h3 id="mallow-stick">Marshmallow On A Stick:</h3>
+        <p>Can use any Marshmallow item.</p>
+        <img class="imgs" src="./src/assets/wikis/smored/mallowstick_recipe.svg" alt="img">
+      </div>
+      <div class="info-box">
+        <h3 id="marshmallow">Cracker:</h3>
+        <p style="color:#0f0f11">\</p>
+        <img class="imgs" src="./src/assets/wikis/smored/cracker_recipe.svg" alt="img">
+      </div>
+      <div class="info-box">
+        <h3 id="marshmallow">Smore:</h3>
+        <p>Can use any Marshmallow item.</p>
+        <img class="imgs" src="./src/assets/wikis/smored/smore_recipe.svg" alt="img">
+      </div>
+      <div class="info-box">
+        <h3 id="marshmallow">Jar:</h3>
+        <p>Can use any Carpet block.</p>
+        <img class="imgs" src="./src/assets/wikis/smored/jar_recipe.svg" alt="img">
+      </div>
+      </div> 
     </div>
-    <br>
-    <div class="info-box">
-      <h3 style="color: aliceblue;">Q: What does this add / do?</h3>
-      <p style="color: aliceblue;">- This mod allows you to double jump and boost jump, increasing the jump height to 5+ blocks.</p>
+
+    <!-- Q&A -->
+    <div id="qna" class="tab-content">
+      <div class="info-box">
+        <h2>Q&A</h2>
+        <p>I will try to answer as many questions as I can.</p>
+        <p>If you have a question that isn't here, you can also ask on the <a class="text2" href="https://github.com/Addi3/smored/issues">GitHub page</a>.</p>
+      </div>
+      <br>
+      <div class="info-box">
+        <h3 id="what-does-this-add">Q: What does this add / do?</h3>
+        <p>- This takes inspiration from Outerwild's Marshmallow mechanics by adding the ability to roast them and much more...</p>
       <br>
       <h3 style="color: aliceblue;">Q: Will this mod be ported to Forge or NeoForge?</h3>
       <p style="color: aliceblue;">- Nope. I just don't have the time to maintain multiple mod versions. You can look at the `DEV TALK` page <a style="color: rgb(60, 164, 255);"class=text2 href="https://addi3.github.io/">here</a> for a detailed answer.</p>
@@ -122,13 +183,137 @@ function searchWiki() {
       <h3 style="color: aliceblue;">Q: Can you add... / How do you use...?</h3>
       <p style="color: aliceblue;">- You can suggest stuff on the GitHub issues page. I will try to answer any questions!</p>
       <br>
-      <h3 style="color: aliceblue;">Q: Can I toggle it on and off?</h3>
-      <p style="color: aliceblue;">- You can, with <mark style="color: aliceblue;">"G"</mark> by default (you can change that)</p>
-    </div> 
+      <h3 style="color: aliceblue;">Q: What compatability does the mod have?</h3>
+      <p style="color: aliceblue;">- It has compatability with the <a style="color: rgb(60, 164, 255);"class=text2 href="https://modrinth.com/mod/create-fabric/versions?g=1.20.1&l=fabric">Create Mod</a> (for recipes), It also has
+      compat with the <a style="color: rgb(60, 164, 255);"class=text2 href="https://modrinth.com/mod/tooltip-overhaul/versions?g=1.20.1&l=fabric">Tooltip Overhaul Mod</a> (for custom tooltips).</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: What advancements can you get?</h3>
+      <p style="color: aliceblue;">- Here are all the advancements in the mod right now:</p>
+      <img class="imgs-big" src="./src/assets/wikis/smored/advancements.svg" alt="img">
+      <br>
+      </div>
+    </div>
   </div>
-</div>
+
+<script>
+// === Tab Switching Functionality ===
+const sidebarLinks = document.querySelectorAll('.sidenav a[href^="#"]');
+const tabs = document.querySelectorAll('.tab-content');
+
+// Show a tab by ID
+function showTab(tabId) {
+  tabs.forEach(tab => tab.style.display = 'none');
+  const tab = document.getElementById(tabId);
+  if (tab) {
+    tab.style.display = 'block';
+  }
+}
+
+// If URL has a hash (#something), open that tab
+function loadTabFromHash() {
+  const hash = window.location.hash.substring(1);
+
+  if (hash && document.getElementById(hash)) {
+    showTab(hash);
+  } else {
+    showTab('default'); // fallback
+  }
+}
+
+loadTabFromHash(); // run on page load
+
+// Listen for sidebar clicks
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tabId = link.getAttribute('href').substring(1);
+
+    // Update URL hash without scrolling to top
+    history.pushState(null, "", "#" + tabId);
+
+    showTab(tabId);
+  });
+});
+
+// Detect manual URL hash changes (user edits URL or presses back/forward)
+window.addEventListener("hashchange", loadTabFromHash);
 
 
+// === Search Functionality ===
+const searchBar = document.getElementById('search-bar');
+const resultContainer = document.getElementById('search-results');
+const resultList = resultContainer.querySelector('ul');
+
+searchBar.addEventListener('input', () => searchContent());
+
+function searchContent() {
+  const query = searchBar.value.toLowerCase().trim();
+  resultList.innerHTML = '';
+
+  if (!query) {
+    resultContainer.style.display = 'none';
+    return;
+  }
+
+  resultContainer.style.display = 'block';
+  const results = [];
+
+  tabs.forEach(tab => {
+    const elements = tab.querySelectorAll('h1, h2, h3, p');
+    elements.forEach(el => {
+      if (el.textContent.toLowerCase().includes(query)) {
+        if (!el.id) el.id = 'search-' + Math.random().toString(36).substring(2, 9);
+        results.push({ title: el.textContent, id: el.id, tab: tab, element: el });
+      }
+    });
+  });
+
+  if (results.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'No results found';
+    li.classList.add('no-results');
+    resultList.appendChild(li);
+    return;
+  }
+
+  results.forEach(result => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = result.title;
+    a.href = '#' + result.id;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      scrollToText(result);
+    });
+    li.appendChild(a);
+    resultList.appendChild(li);
+  });
+}
+
+function scrollToText(result) {
+  const el = result.element;
+  if (!el) return;
+
+  // Switch to correct tab
+  showTab(result.tab.id);
+
+  // Update URL hash
+  history.pushState(null, "", "#" + result.tab.id);
+
+  searchBar.value = '';
+  resultContainer.style.display = 'none';
+  resultList.innerHTML = '';
+
+  setTimeout(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.style.backgroundColor = '#535358';
+    setTimeout(() => { el.style.backgroundColor = ''; }, 1000);
+  }, 50);
+}
+</script>
+
+
+</body>
 <style>
  
 </style>

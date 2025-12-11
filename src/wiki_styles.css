@@ -115,6 +115,84 @@ mark {
   border-radius: 3%;
 }
 
+.imgs-big {
+  border-radius: 3%;
+  scale: 80%;
+  margin-left: -80px;
+}
+
 .text2:hover {
   text-decoration: none !important;
 }
+
+#recipebox {
+  display: flex;
+  flex-wrap: wrap;          
+  gap: 20px;               
+}
+
+#recipebox .info-box {
+  flex: 0 0 calc(50% - 20px); 
+  box-sizing: border-box;     
+  margin-bottom: 20px;        
+}
+
+.search-container {
+    padding: 10px;
+    text-align: left;
+  }
+
+  #search-bar {
+    width: 20%;
+    padding: 8px;
+    font-size: 14px;  /* Smaller font size */
+    border: 1px solid #2e2e33;
+    border-radius: 4px;
+  }
+
+  /* Compact Search Results */
+  .search-results {
+    margin-top: 10px;
+    padding: 0;
+    max-height: 200px; /* Set a smaller height */
+    overflow-y: auto;
+    border-top: 1px solid #2e2e33;
+    background-color: #2e2e33;
+    border-radius: 5px;
+  }
+
+  .search-results ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .search-results li {
+    padding: 5px 10px;  /* Less padding */
+    margin: 2px 0;  /* Less margin */
+    font-size: 14px;  /* Smaller font size */
+    background-color: #2e2e33;
+    border-bottom: 1px solid #2e2e33;
+    border-radius: 4px;
+  }
+
+  .search-results li:last-child {
+    border-bottom: none;
+  }
+
+  .search-results a {
+    text-decoration: none;
+    color: #3498db;
+    display: block;
+  }
+
+  .search-results a:hover {
+    background-color: #2e2e2e;  /* Light blue highlight on hover */
+    padding-left: 8px;  /* Slight indent on hover */
+  }
+
+  .search-results li.no-results {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+  }
