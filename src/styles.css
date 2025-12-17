@@ -1039,6 +1039,7 @@ a:hover,
   color: #fff;
 }
 
-
-
-
+mark {
+  background-color: rgb(117, 117, 117);
+  color: black;
+}
