@@ -85,9 +85,10 @@ body:has(:target) .default-tab {
 }
 
 mark {
-  background-color: rgb(117, 117, 117);
+  background-color: #363636;
   color: black;
 }
+
 
 .info-box {
   background-color: #0f0f11;

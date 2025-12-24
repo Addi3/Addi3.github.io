@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callisto Lib Wiki</title>
+     <meta content="Callisto Lib Wiki" property="og:title"/>
+    <meta content="Callisto Lib Wiki Official Site." property="og:description"/>
+    <meta content="https://addi3.github.io" property="og:url"/>
+    <meta content="https://addi3.github.io/src/assets/misc/avatar.svg" property="og:image"/>
+    <meta content="#F69602" data-react-helmet="true" name="theme-color"/>
+    <link rel="stylesheet" href="./src/wiki_styles.css">
+</head>
+
+<body>
+
+<!-- Side navigation -->
+<div class="sidenav">
+  <a style="color: aliceblue;">Callisto Lib Wiki</a>
+  <hr class="divider">
+  <br>
+  <a href="#implementing">Implementing</a>
+  <br>
+  <a href="#datagen">Data Generation</a>
+  <br>
+  <a href="#misc">Misc</a>
+  <br>
+  <a href="#qna">Q&A</a>
+</div>
+
+
+
+<div class="main">
+
+     <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search  Page...">
+      <div class="search-results" id="search-results">
+        <ul></ul>
+      </div>
+    </div>
+
+  <div id="default" class="tab-content default-tab">
+    <div class="info-box">
+      <h1 style="color: aliceblue;">Welcome to the Callisto Lib Wiki</h1>
+      <p style="color: aliceblue;">Select a topic from the sidebar to get started!</p>
+      <p style="color: aliceblue;">You can learn how to impliement the lib and use what it provides.</p>
+      <br>
+      <p style="color: aliceblue;">By the way its pronounced kuh·li·stow</p>
+    </div>
+  </div>
+
+  <div id="implementing" class="tab-content">
+    <div class="info-box">
+      <h1 style="color: aliceblue;">Implementing</h1>
+      <p style="color: aliceblue;">This page will teach you how to impliment the api and use it</p>
+      <p style="color: aliceblue;">and how to use it in your mods.</p>
+    </div>
+    <br>
+    <div class="info-box">
+      <h2 style="color: aliceblue;">Importing the library maven:</h2>
+      <p style="color: aliceblue;">First open your <mark style="color: aliceblue;">"build.gradle"</mark>, under repositories add the following:</p>
+      <pre style="color: aliceblue;">maven {
+		url "https://addi3.github.io/maven"
+
+		content {
+			includeGroup "com.lib"
+		}
+	}</pre>
+    <br>
+      <p style="color: aliceblue;">Now under dependencies add the following:</p>
+      <pre style="color: aliceblue;">modApi("com.lib:callisto:${project.callisto_version}") {
+		exclude(group: "net.fabricmc.fabric-api")}</pre>
+    <br>
+      <p style="color: aliceblue;">Now under processResources add the following:</p>
+      <pre style="color: aliceblue;">inputs.property "callisto_version", project.callisto_version</pre>
+    <br>
+      <p style="color: aliceblue;">Finally, if you have def expansionVars add the following:</p>
+      <pre style="color: aliceblue;">,"callisto_version": project.callisto_version</pre>
+    <br>
+      <p style="color: aliceblue;">Now open your <mark style="color: aliceblue;">"gradle.properties"</mark> and add the following:</p>
+      <pre style="color: aliceblue;">callisto_version=VERSION-dev+mc.1.20.1</pre>
+
+      <p style="color: aliceblue;">It is very important that you replace <mark style="color: aliceblue;">"VERSION"</mark> with the latest one</p>
+      <p style="color: aliceblue;">found on the <a style="color: rgb(60, 164, 255);"class=text2 href="https://addi3.github.io/maven/browse/com/lib/callisto/">Maven page</a>!</p>
+      <p style="color: aliceblue;"> For example (as of December 20th 2025) it would be <pre style="color: aliceblue;">callisto_version=1.0.0-dev+mc.1.20.1</pre></p>
+    </div>
+  </div>
+
+  <div id="datagen" class="tab-content">
+    <div class="info-box">
+      <h1 style="color: aliceblue;">Data Generation</h1>
+      <p style="color: aliceblue;">This page will show / teach you all datagen related features</p>
+    </div>
+    <br>
+    <div class="info-box">
+      <h2 style="color: aliceblue;">SoundProvider:</h2>
+      <p style="color: aliceblue;">First in your datagenerator class, under <mark style="color: aliceblue;">"onInitializeDataGenerator"</mark> add the following:</p>
+      <pre style="color: aliceblue;">pack.addProvider(this::addSounds);</pre>
+      <br>
+      <p style="color: aliceblue;">Then, anywhere outside of the initalizer part add the following:</p>
+     <pre style="color: aliceblue;">
+public CallistoLibSoundProvider addSounds(FabricDataOutput output) {
+    CallistoLibSoundProvider soundProvider = new CallistoLibSoundProvider(output);
+
+    soundProvider.addSound("SubTitle Name", ModSounds.SOUND_NAME);
+    return soundProvider;
+}
+</pre>
+    </div>
+    <br>
+    <div class="info-box">
+      <h2 style="color: aliceblue;">RecipeProvider:</h2>
+      <p style="color: aliceblue;">First in your datagenerator class, under <mark style="color: aliceblue;">"onInitializeDataGenerator"</mark> add the following:</p>
+      <pre style="color: aliceblue;">generateRecipes(pack);</pre>
+      <br>
+      <p style="color: aliceblue;">Then, anywhere outside of the initalizer part add the following:</p>
+     <pre style="color: aliceblue;">
+ public void generateRecipes(FabricDataGenerator.Pack pack) {
+        pack.addProvider((((output, registriesFuture) -> {
+            CallistoLibRecipeProvider provider = new CallistoLibRecipeProvider(output);
+
+          PUT RECIPES HERE
+
+            return provider;
+        })));
+    }
+</pre>
+      <p style="color: aliceblue;">(This currently supports: shaped / shapeless crafting, smithing, stonecutting, blasting Recipes)</p>
+    </div>
+  </div>
+
+  <div id="misc" class="tab-content">
+    <div class="info-box">
+      <h1 style="color: aliceblue;">Implementing</h1>
+      <p style="color: aliceblue;">This page will teach you how to impliment the api and use it</p>
+      <p style="color: aliceblue;">and how to use it in your mods.</p>
+    </div>
+    <br>
+    <div class="info-box">
+      <h2 style="color: aliceblue;">Differing Hand Model Item:</h2>
+      <p style="color: aliceblue;">This is used for stuff like the spyglass. It can be used with ItemRenderer and ModelLoader mixins</p>
+      <p style="color: aliceblue;">to allow for the "2D" in inventory, "3D" in hand effect.</p>
+    <p style="color: aliceblue;">See here for mixin examples: 
+    <a style="color: rgb(60, 164, 255);"class=text2 href="https://github.com/Addi3/smored/blob/master/src/client/java/com/addie/mixin/client/ItemRendererMixin.java">ItemRendererMixin</a>
+    <a style="color: rgb(60, 164, 255);"class=text2 href="https://github.com/Addi3/smored/blob/master/src/client/java/com/addie/mixin/client/ModelLoaderMixin.java">ModelLoaderMixin</a>
+    .</p>
+    <br>
+    </div>
+  </div>
+
+  <div id="qna" class="tab-content">
+    <div class="info-box">
+      <h1 style="color: aliceblue;">Q&A</h1>
+      <p style="color: aliceblue;">I will try to answer as many questions as I can.</p>
+      <p style="color: aliceblue;">If you have a question that isn't here, you can also ask on the <a style="color: rgb(60, 164, 255);"class=text2 href="https://github.com/Addi3/Callisto/issues">GitHub page</a> .</p>
+    </div>
+    <br>
+    <div class="info-box">
+      <h3 style="color: aliceblue;">Q: What does this add / do?</h3>
+      <p style="color: aliceblue;">- This adds a few providers and extra class that i will use in all my mods, including: SoundsProvider, RecipeProvider, DifferingHandModelItem.</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: Will this mod be ported to Forge or NeoForge?</h3>
+      <p style="color: aliceblue;">- Nope. I just don't have the time to maintain multiple mod versions. You can look at the `DEV TALK` page <a style="color: rgb(60, 164, 255);"class=text2 href="https://addi3.github.io/">here</a> for a detailed answer.</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: How do I get access to betas?</h3>
+      <p style="color: aliceblue;">- You can access betas via my <a style="color: rgb(60, 164, 255);"class=text2 href="https://ko-fi.com/addi3dabaddie">Ko-fi page</a>.</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: Can you add... / How do you use...?</h3>
+      <p style="color: aliceblue;">- You can suggest stuff on the GitHub issues page. I will try to answer any questions!</p>
+      <br>
+      <h3 style="color: aliceblue;">Q: Can I toggle it on and off?</h3>
+      <p style="color: aliceblue;">- You can, with <mark style="color: aliceblue;">"G"</mark> by default (you can change that)</p>
+    </div> 
+  </div>
+</div>
+
+<script>
+// === Tab Switching Functionality ===
+const sidebarLinks = document.querySelectorAll('.sidenav a[href^="#"]');
+const tabs = document.querySelectorAll('.tab-content');
+
+// Show a tab by ID
+function showTab(tabId) {
+  tabs.forEach(tab => tab.style.display = 'none');
+  const tab = document.getElementById(tabId);
+  if (tab) {
+    tab.style.display = 'block';
+  }
+}
+
+// If URL has a hash (#something), open that tab
+function loadTabFromHash() {
+  const hash = window.location.hash.substring(1);
+
+  if (hash && document.getElementById(hash)) {
+    showTab(hash);
+  } else {
+    showTab('default'); // fallback
+  }
+}
+
+loadTabFromHash(); // run on page load
+
+// Listen for sidebar clicks
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const tabId = link.getAttribute('href').substring(1);
+
+    // Update URL hash without scrolling to top
+    history.pushState(null, "", "#" + tabId);
+
+    showTab(tabId);
+  });
+});
+
+// Detect manual URL hash changes (user edits URL or presses back/forward)
+window.addEventListener("hashchange", loadTabFromHash);
+
+
+// === Search Functionality ===
+const searchBar = document.getElementById('search-bar');
+const resultContainer = document.getElementById('search-results');
+const resultList = resultContainer.querySelector('ul');
+
+searchBar.addEventListener('input', () => searchContent());
+
+function searchContent() {
+  const query = searchBar.value.toLowerCase().trim();
+  resultList.innerHTML = '';
+
+  if (!query) {
+    resultContainer.style.display = 'none';
+    return;
+  }
+
+  resultContainer.style.display = 'block';
+  const results = [];
+
+  tabs.forEach(tab => {
+    const elements = tab.querySelectorAll('h1, h2, h3, p');
+    elements.forEach(el => {
+      if (el.textContent.toLowerCase().includes(query)) {
+        if (!el.id) el.id = 'search-' + Math.random().toString(36).substring(2, 9);
+        results.push({ title: el.textContent, id: el.id, tab: tab, element: el });
+      }
+    });
+  });
+
+  if (results.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'No results found';
+    li.classList.add('no-results');
+    resultList.appendChild(li);
+    return;
+  }
+
+  results.forEach(result => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = result.title;
+    a.href = '#' + result.id;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      scrollToText(result);
+    });
+    li.appendChild(a);
+    resultList.appendChild(li);
+  });
+}
+
+function scrollToText(result) {
+  const el = result.element;
+  if (!el) return;
+
+  // Switch to correct tab
+  showTab(result.tab.id);
+
+  // Update URL hash
+  history.pushState(null, "", "#" + result.tab.id);
+
+  searchBar.value = '';
+  resultContainer.style.display = 'none';
+  resultList.innerHTML = '';
+
+  setTimeout(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.style.backgroundColor = '#535358';
+    setTimeout(() => { el.style.backgroundColor = ''; }, 1000);
+  }, 50);
+}
+</script>
+
+
+
+</body>
+<style>
+ 
+</style>
