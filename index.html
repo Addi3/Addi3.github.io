@@ -344,9 +344,34 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>License: ARR</p>
 
       </div>
-    </div>
+    </div> <!-- end second row -->
 
-  </div> 
+    <div class="row">
+
+    <!-- Wild Growth -->
+    <div class="column">
+      <div style="margin-left: 135.2px;"class="card">
+        <h2 style="color: aliceblue;">Wild Growth</h2>
+        <img src="./src/assets/mods/wildgrowth.svg" alt="Wild Growth" class="avatar">
+        <a style="color:rgb(118, 125, 148)" id="wildgrowth">VERSION</a>
+        <p class="text">This backports and expands upon the nature part of the 1.21.5 spring to life drop...</p>
+
+        <div class="modlink-box">
+          <a href="https://modrinth.com/mod/wildgrowth">
+            <img src="./src/assets/socials/modrinth_logo.svg"alt="Modrinth">
+            <span class="text2">Modrinth</span>
+          </a>
+        </div>
+
+       <div class="modlink-box">
+        <a href="https://github.com/Addi3/wildgrowth">
+          <img src="./src/assets/socials/github_logo.svg" alt="Github">
+          <span class="text2">Github</span>
+        </a>
+      </div>
+        <p>License: ARR</p>
+      </div>
+    </div>
 
 </div>
 </div>
@@ -1049,7 +1074,8 @@ function opentab(evt, tabName) {
       { slug: "amble-stargate", elementId: "amble-stargate" },
       { slug: "toasted", elementId: "toasted" },
       { slug: "jumpsquared", elementId: "jumpsquared" },
-      { slug: "smored", elementId: "smored" }
+      { slug: "smored", elementId: "smored" },
+      { slug: "wildgrowth", elementId: "wildgrowth" }
     ];
 
     async function fetchLatestVersion(slug, elementId) {
