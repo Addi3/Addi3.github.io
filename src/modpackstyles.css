@@ -1,0 +1,101 @@
+/* === GLOBAL LAYOUT & THEME === */
+body {
+  background-repeat: inherit;
+  background-attachment: scroll;
+  background-size: 120rem;
+  background-position-y: -10rem;
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: 3rem;
+  background-color: #444565;
+  color: aliceblue;
+}
+
+h1, h2, h3, h4 {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* === GROW EFFECT === */
+.grow {
+  transition: transform 0.2s;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.grow:hover {
+  transform: scale(1.15);
+  border-radius: 40%;
+}
+
+/* Container for the Home tab */
+.home-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1a1827;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: aliceblue;
+  font-family: system-ui;
+  line-height: 1.6;
+}
+
+
+
+.social-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.social-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+.social-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+  border-radius: 10%;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.social-item img:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.social-item .text {
+  color: aliceblue;
+  font-size: 0.95rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+.social-item.modrinth { background-color: #00ff8090; }
+.social-item.curseforge { background-color: #df5125; }

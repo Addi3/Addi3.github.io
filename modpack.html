@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modpack Site</title>
+     <meta content="Modpack Site" property="og:title"/>
+    <meta content="Modpack Site." property="og:description"/>
+    <meta content="#F69602" data-react-helmet="true" name="theme-color"/>
+    <link rel="stylesheet" href="./src/modpackstyles.css">
+    <style>
+</style>
+
+</head>
+<body>
+
+  <div class="home-container">
+    <section class="intro">
+      <center>       
+        <h2>Modpack</h2>
+        <h3>Recommended Ram: 8gb </h3>
+        <h3>Pack Version: 1.0.0</h3>
+        </center>
+      
+<div class="social-item modrinth" onclick="downloadFilemr()">
+  <img src="/src/assets/socials/modrinth_logo.svg" alt="Modrinth">
+  <span class="text">Modrinth</span>
+</div>
+
+<script>
+  function downloadFilemr() {
+    const link = document.createElement("a");
+    link.href = "/src/assets/publicdownloads/modpacks/ait_modified.mrpack";
+    link.setAttribute("download", "ait_modified.mrpack");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
+<br>
+
+<div class="social-item curseforge" onclick="downloadFilecf()">
+  <img src="/src/assets/socials/curseforge_logo.svg" alt="Curseforge">
+  <span class="text">Curseforge</span>
+</div>
+
+<script>
+  function downloadFilecf() {
+    const link = document.createElement("a");
+    link.href = "/src/assets/publicdownloads/modpacks/ait_modified.zip";
+    link.setAttribute("download", "ait_modified.zip");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
+    
+  </div>
+</div>
