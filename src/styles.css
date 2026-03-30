@@ -497,6 +497,7 @@ a:hover,
 .social-item.bluesky { background-color: #1da0f2b1; }
 .social-item.twitch { background-color: #9146FF; }
 .social-item.kofi { background-color: #e9dac6; }
+.social-item.codeberg { background-color: #1a457e; }
 
 
 @media screen and (max-width: 600px) {
